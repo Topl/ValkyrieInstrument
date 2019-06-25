@@ -60,7 +60,7 @@ public final class Valkyrie extends TruffleInstrument {
         });
 
 //        controller = new ValkyrieController(env);
-        env.registerService(Valkyrie.class);
+        env.registerService(this);
     }
 
     public static Valkyrie getInstrument(Engine engine){
