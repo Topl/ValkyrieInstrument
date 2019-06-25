@@ -1,11 +1,11 @@
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+package Option;
 
-import com.oracle.truffle.api.Truffle;
+import java.io.IOException;
+
+import Option.Valkyrie;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Engine;
 
 class Main {
     public static void main(String args[]) throws IOException {
@@ -29,7 +29,10 @@ class Main {
 
         System.out.println(TruffleInstrument.class.isAssignableFrom(Valkyrie.class));
 
+        Engine engine = Engine.create();
 
+//        TruffleInstrument.Env env = engine.getInstruments().get("Valkyrie").lookup(Valkyrie.class).getEnv();
+//        assert(env.getInstruments().containsKey("Valkyrie") == true);
         Context context = Context
                 .newBuilder("js")
                 .option("Valkyrie", "true")

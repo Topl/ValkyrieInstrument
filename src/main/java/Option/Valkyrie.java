@@ -1,6 +1,9 @@
+package Option;
+
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.instrumentation.*;
+import org.graalvm.options.OptionDescriptors;
 import org.graalvm.polyglot.Instrument;
 import org.graalvm.polyglot.Engine;
 
@@ -9,6 +12,7 @@ import org.graalvm.polyglot.Engine;
 public final class Valkyrie extends TruffleInstrument {
 
     private ValkyrieController controller;
+    private Env env;
     @Override
     protected void onCreate(TruffleInstrument.Env env) {
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
@@ -59,8 +63,9 @@ public final class Valkyrie extends TruffleInstrument {
 //            }
         });
 
-//        controller = new ValkyrieController(env);
+        controller = new ValkyrieController(env);
         env.registerService(this);
+        this.env = env;
     }
 
     public static Valkyrie getInstrument(Engine engine){
@@ -69,6 +74,10 @@ public final class Valkyrie extends TruffleInstrument {
             throw new IllegalStateException("Instrument is not installed.");
         }
         return instrument.lookup(Valkyrie.class);
+    }
+
+    public Env getEnv() {
+        return this.env;
     }
 
 //    class ValkyrieInstrumentListener implements ExecutionEventListener {
@@ -107,6 +116,11 @@ public final class Valkyrie extends TruffleInstrument {
     @Override
     protected void onDispose(TruffleInstrument.Env env) {
 
+    }
+
+    @Override
+    protected OptionDescriptors getOptionDescriptors() {
+        return new ValkyrieOptionOptionDescriptors();
     }
 }
 
