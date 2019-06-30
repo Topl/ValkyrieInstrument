@@ -1,37 +1,21 @@
 package InstrumentClasses;
-
-import com.apple.laf.AquaButtonBorder;
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.instrumentation.*;
 import com.oracle.truffle.api.nodes.Node;
-import com.oracle.truffle.api.object.DynamicObject;
-import com.oracle.truffle.api.object.LocationFactory;
-import com.oracle.truffle.api.object.Shape;
-import com.oracle.truffle.js.builtins.JSONBuiltins;
-import com.oracle.truffle.js.nodes.function.JSBuiltin;
 import com.oracle.truffle.js.runtime.JSArguments;
-import com.oracle.truffle.js.runtime.builtins.JSFunction;
-import com.oracle.truffle.js.runtime.builtins.JSUserObject;
 import org.graalvm.options.OptionDescriptors;
 import org.graalvm.polyglot.Instrument;
 import org.graalvm.polyglot.Engine;
-import sun.jvm.hotspot.utilities.soql.JSJavaFrame;
 
 import java.util.Iterator;
 
-import static com.oracle.truffle.js.runtime.JSFrameUtil.getArgumentsArray;
-import static com.oracle.truffle.js.runtime.JSFrameUtil.getParentFrame;
-import static com.oracle.truffle.js.runtime.JSFrameUtil.getThisObj;
-import static com.oracle.truffle.js.runtime.builtins.JSArgumentsObject.isJSArgumentsObject;
-import static com.oracle.truffle.js.runtime.builtins.JSFunction.ARGUMENTS;
-import static com.oracle.truffle.js.runtime.builtins.JSUserObject.isJSUserObject;
 
 
 @TruffleInstrument.Registration(id = "Valkyrie", services = ProgramController.class)
 public final class Valkyrie extends TruffleInstrument {
 
-    private ProgramController controller;
+    public ProgramController controller;
     private Env env;
     @Override
     protected void onCreate(TruffleInstrument.Env env) {
@@ -126,7 +110,7 @@ public final class Valkyrie extends TruffleInstrument {
                                                             System.out.println(separatedNames[0] + "\n" + separatedNames[1] + "\n" + issuer + "\n" + to + "\n" + amount + "\n" + assetCode + "\n" + fee + "\n" + data);
 
                                                             //Make transaction using Controller
-                                                            ProgramController.createAssets(issuer, to, amount, assetCode, fee, data);
+                                                            controller.createAssets(issuer, to, amount, assetCode, fee, data);
 
                                                             //TODO return tx json like API does
                                                             CompilerDirectives.transferToInterpreterAndInvalidate();
@@ -207,8 +191,11 @@ public final class Valkyrie extends TruffleInstrument {
 
         });
 
-        controller = new ProgramController(env);
+
+        this.controller = new ProgramController(env.getInstrumenter());
+        System.out.println("Registering Controller");
         env.registerService(controller);
+        System.out.println("Registered Controller");
 //        this.env = env;
     }
 
@@ -235,6 +222,8 @@ public final class Valkyrie extends TruffleInstrument {
         return new ValkyrieOptionOptionDescriptors();
     }
 
-
+    public ProgramController getController() {
+        return controller;
+    }
 }
 

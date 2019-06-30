@@ -1,8 +1,10 @@
 import java.io.IOException;
 
 import InstrumentClasses.ProgramController;
+import InstrumentClasses.Valkyrie;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Engine;
+import org.graalvm.polyglot.Instrument;
 
 class Main {
     public static void main(String args[]) throws IOException {
@@ -32,33 +34,38 @@ class Main {
                 "function add(){a = addResult(); function addResult(){return 2 + 2}}" ;
 
 
-        Engine engine = Engine.create();
-
 //        TruffleInstrument.Env env = engine.getInstruments().get("Valkyrie").lookup(Valkyrie.class).getEnv();
 //        assert(env.getInstruments().containsKey("Valkyrie") == true);
         Context context = Context
                 .newBuilder("js")
                 .option("Valkyrie", "true")
-//                .allowAllAccess(true)
+                .allowAllAccess(true)
                 .build();
 
 //        ProgramController controller = new ProgramController(context);
 
-        context.getEngine().getInstruments().get("Valkyrie").lookup(ProgramController.class);
+//        context.getEngine().getInstruments().get("Valkyrie").lookup(ProgramController.class);
 
 //        //Setup controller
 //        ProgramController controller = ProgramController.find(context.getEngine());
 //        assert (controller != null);
 
+        Instrument ValkyrieInstrument = context.getEngine().getInstruments().get("Valkyrie");
+
+        System.out.println(ValkyrieInstrument);
+        System.out.println(ValkyrieInstrument.getOptions());
+        System.out.println(ValkyrieInstrument.lookup(ProgramController.class));
+
+        ProgramController controller = ValkyrieInstrument.lookup(ProgramController.class);
+
         //
         context.eval("js", testValkyrie);
         context.eval("js", "create()");
+        System.out.println(controller.getNewAssetInstances());
 //        System.out.println(context.getBindings("js").getMemberKeys());
         System.out.println(context.getBindings("js").getMember("res"));
-        System.out.println(ProgramController.getNewAssetInstances());
-//        System.out.println(context.getBindings("js").getMember("assetCreated"));
-//
-//        System.out.println(context.getBindings("js").getMember("a"));
+//        System.out.println(ProgramController.getNewAssetInstances());
+
 
 
     }

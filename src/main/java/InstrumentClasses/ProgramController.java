@@ -1,5 +1,6 @@
 package InstrumentClasses;
 
+import com.oracle.truffle.api.instrumentation.Instrumenter;
 import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import org.graalvm.polyglot.Context;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class ProgramController implements Closeable {
+public class ProgramController {//implements Closeable {
 
     public Context context;
 
@@ -19,13 +20,14 @@ public class ProgramController implements Closeable {
     private static Map<byte[], AssetInstance> assetBoxesForUse;
     private static Map<byte[], ArbitInstance> arbitBoxesForUse;
 
-    private static ArrayList<AssetInstance> newAssets;
+    private  ArrayList<AssetInstance> newAssets;
     private static ArrayList<ArbitInstance> newArbits;
 
     private static ArrayList<byte[]> boxesToRemove;
 
     private SourceSectionFilter filter = null;
 
+    private final Instrumenter instrumenter;
 
     private final TruffleInstrument.Env env;
 
@@ -33,6 +35,14 @@ public class ProgramController implements Closeable {
         newAssets = new ArrayList<AssetInstance>();
         boxesToRemove = new ArrayList<byte[]>();
         this.env = env;
+        this.instrumenter = null;
+    }
+
+    ProgramController(Instrumenter instrumenter) {
+        newAssets = new ArrayList<AssetInstance>();
+        boxesToRemove = new ArrayList<byte[]>();
+        this.instrumenter = instrumenter;
+        this.env = null;
     }
 
 //    public ProgramController(Context context) {
@@ -62,7 +72,7 @@ public class ProgramController implements Closeable {
         assetBoxesForUse = assetInstances;
     }
 
-    public static ArrayList<AssetInstance> getNewAssetInstances() {
+    public  ArrayList<AssetInstance> getNewAssetInstances() {
         System.out.println("Entered getNewAssets in PC");
         return newAssets;
     }
@@ -78,7 +88,7 @@ public class ProgramController implements Closeable {
     /*
     Methods to be used by instrument for updating values for caught Valkyrie functions
     */
-    protected static void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
+    protected  void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
         System.out.println("Entered createAssets in PC");
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount, data));
         System.out.println(newAssets.size());
