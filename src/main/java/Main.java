@@ -50,18 +50,19 @@ class Main {
 //        ProgramController controller = ProgramController.find(context.getEngine());
 //        assert (controller != null);
 
-        Instrument ValkyrieInstrument = context.getEngine().getInstruments().get("Valkyrie");
+        Instrument valkyrieInstrument = context.getEngine().getInstruments().get("Valkyrie");
 
-        System.out.println(ValkyrieInstrument);
-        System.out.println(ValkyrieInstrument.getOptions());
-        System.out.println(ValkyrieInstrument.lookup(ProgramController.class));
+//        System.out.println(valkyrieInstrument);
+//        System.out.println(valkyrieInstrument.getOptions());
+//        System.out.println(valkyrieInstrument.lookup(ProgramController.class));
+//
+//        ProgramController controller = valkyrieInstrument.lookup(ProgramController.class);
 
-        ProgramController controller = ValkyrieInstrument.lookup(ProgramController.class);
-
-        //
+        ProgramController controller2 = ProgramController.find(context.getEngine());
+        System.out.println(controller2);
         context.eval("js", testValkyrie);
         context.eval("js", "create()");
-        System.out.println(controller.getNewAssetInstances());
+        System.out.println(controller2.getNewAssetInstances());
 //        System.out.println(context.getBindings("js").getMemberKeys());
         System.out.println(context.getBindings("js").getMember("res"));
 //        System.out.println(ProgramController.getNewAssetInstances());

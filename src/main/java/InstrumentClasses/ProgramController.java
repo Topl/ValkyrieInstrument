@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class ProgramController {//implements Closeable {
+public class ProgramController implements Closeable {
 
     public Context context;
 
@@ -52,6 +52,15 @@ public class ProgramController {//implements Closeable {
 //    }
 
 
+    static {
+        Valkyrie.setFactory(new ProfilerToolFactory<ProgramController>() {
+            @Override
+            public ProgramController create(TruffleInstrument.Env env) {
+                return new ProgramController(env);
+            }
+        });
+    }
+
     /*
     Methods to be used on scala side for initializing controller
      */
@@ -61,7 +70,7 @@ public class ProgramController {//implements Closeable {
     }
 
     public static ProgramController find(Engine engine) {
-        return Valkyrie.getInstrument(engine);
+        return Valkyrie.getController(engine);
     }
 
     public static void setArbitBoxesForUse(Map<byte[], ArbitInstance> arbitInstances) {

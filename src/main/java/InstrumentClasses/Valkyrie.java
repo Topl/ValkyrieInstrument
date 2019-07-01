@@ -12,13 +12,38 @@ import java.util.Iterator;
 
 
 
-@TruffleInstrument.Registration(id = "Valkyrie", services = ProgramController.class)
+@TruffleInstrument.Registration(id = "Valkyrie", name = "Valkyrie Instrument", services = {ProgramController.class})
 public final class Valkyrie extends TruffleInstrument {
 
     public ProgramController controller;
     private Env env;
+
+
+    private static ProfilerToolFactory<ProgramController> factory;
+
+    public static void setFactory(ProfilerToolFactory<ProgramController> factory) {
+//        if (factory == null || !factory.getClass().getName().startsWith("com.oracle.truffle.tools.profiler")) {
+//            throw new IllegalArgumentException("Wrong factory: " + factory);
+//        }
+        Valkyrie.factory = factory;
+    }
+
+    //Static block loaded at initialization
+    static {
+        // Be sure that the factory is initialized:
+        try {
+            Class.forName(ProgramController.class.getName(), true, ProgramController.class.getClassLoader());
+        } catch (ClassNotFoundException ex) {
+            // Can not happen
+            throw new AssertionError();
+        }
+    }
+
+
     @Override
     protected void onCreate(TruffleInstrument.Env env) {
+        System.out.println("<<<<<<<<< Entered onCreate");
+//        System.out.println(env.getInstrumenter().);
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
         SourceSectionFilter filter = builder.tagIs(StandardTags.CallTag.class).build();
         Instrumenter instrumenter = env.getInstrumenter();
@@ -74,7 +99,7 @@ public final class Valkyrie extends TruffleInstrument {
 
             @Override
             public ExecutionEventNode create(EventContext context) {
-                System.out.println(context.getInstrumentedNode().getEncapsulatingSourceSection().getCharacters());
+//                System.out.println(context.getInstrumentedNode().getEncapsulatingSourceSection().getCharacters());
                 return new ExecutionEventNode() {
                     @Override
                     protected void onEnter(VirtualFrame frame) {
@@ -89,16 +114,12 @@ public final class Valkyrie extends TruffleInstrument {
                                 String separatedNames[] = methodName.split("\\.");
                                 switch (separatedNames[0]) {
                                     case "ValkyrieReserved":
-
                                         switch(separatedNames[1]) {
-
                                             case "createAssets":
                                                 try {
-
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
 
                                                     if (functionArguments.length == 6) {
-
 //                                                        try {
                                                             //TODO correct parsing of values, specifically Longs
                                                             String issuer = (String) functionArguments[0];
@@ -144,9 +165,7 @@ public final class Valkyrie extends TruffleInstrument {
                                         }
                                         //Non valkyrie (ordinary) function - do nothing
                                     default:
-
                                 }
-
                             }
                         }
                         catch (Exception e) {
@@ -185,21 +204,21 @@ public final class Valkyrie extends TruffleInstrument {
                         return info;
                     }
 
-
                 };
             }
-
         });
 
-
-        this.controller = new ProgramController(env.getInstrumenter());
+//        this.controller = new ProgramController(env);
+        controller = factory.create(env);
         System.out.println("Registering Controller");
         env.registerService(controller);
+//        System.out.println(env.lookup(env.getInstruments().get("Valkyrie"), ProgramController.class));
         System.out.println("Registered Controller");
-//        this.env = env;
+        System.out.println(controller.getNewAssetInstances());
+        this.env = env;
     }
 
-    public static ProgramController getInstrument(Engine engine){
+    public static ProgramController getController(Engine engine){
         Instrument instrument = engine.getInstruments().get("Valkyrie");
         if (instrument == null) {
             throw new IllegalStateException("Instrument is not installed.");
@@ -214,7 +233,8 @@ public final class Valkyrie extends TruffleInstrument {
 
     @Override
     protected void onDispose(TruffleInstrument.Env env) {
-
+        System.out.println("<<<<<<<<Entered onDispose");
+        System.out.println(controller.getNewAssetInstances());
     }
 
     @Override
@@ -222,8 +242,5 @@ public final class Valkyrie extends TruffleInstrument {
         return new ValkyrieOptionOptionDescriptors();
     }
 
-    public ProgramController getController() {
-        return controller;
-    }
 }
 
