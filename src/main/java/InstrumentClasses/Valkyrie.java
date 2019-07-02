@@ -19,9 +19,9 @@ public final class Valkyrie extends TruffleInstrument {
     private Env env;
 
 
-    private static ProfilerToolFactory<ProgramController> factory;
+    private static ServiceFactory<ProgramController> factory;
 
-    public static void setFactory(ProfilerToolFactory<ProgramController> factory) {
+    public static void setFactory(ServiceFactory<ProgramController> factory) {
 //        if (factory == null || !factory.getClass().getName().startsWith("com.oracle.truffle.tools.profiler")) {
 //            throw new IllegalArgumentException("Wrong factory: " + factory);
 //        }
@@ -42,68 +42,21 @@ public final class Valkyrie extends TruffleInstrument {
 
     @Override
     protected void onCreate(TruffleInstrument.Env env) {
-        System.out.println("<<<<<<<<< Entered onCreate");
-//        System.out.println(env.getInstrumenter().);
+        System.out.println("<<<<<<<<< Entered instrument onCreate");
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
         SourceSectionFilter filter = builder.tagIs(StandardTags.CallTag.class).build();
         Instrumenter instrumenter = env.getInstrumenter();
-//        instrumenter.attachExecutionEventListener(filter, new ExecutionEventListener() {
-           // @Override
-//            public void onEnter(EventContext context, VirtualFrame frame) {
-//
-//                try {
-//                    System.out.println("Entered onEnter in ExecutionEventListener");
-////                CompilerDirectives.transferToInterpreter();
-////                // notify the runtime that we will change the current execution flow
-////                throw context.createUnwind(null);
-////                System.out.println(context);
-//                    Node node = context.getInstrumentedNode();
-//                    Iterator<Node> nodeIterator = node.getChildren().iterator();
-//                    switch (nodeIterator.next().getSourceSection().getCharacters().toString()) {
-//                        case "createAssets":
-//                            nodeIterator.forEachRemaining(k -> System.out.println(k.getEncapsulatingSourceSection()));
-//                            //controller.tryTransaction (call to static method in instance of controller class)
-//                            throw context.createUnwind(true);
-//                        default:
-//                    }
-//                }
-//                catch (Exception e) {
-//                    throw context.createUnwind(null);
-//                }
-//
-//                System.out.println();
-//
-//            }
-//
-//           // @Override
-//            public void onReturnValue(EventContext context, VirtualFrame frame, Object result) {
-//
-////                CompilerDirectives.transferToInterpreter();
-////                // notify the runtime that we will change the current execution flow
-////                throw context.createUnwind(null);
-//
-//            }
-//
-//            //@Override
-//            public void onReturnExceptional(EventContext context, VirtualFrame frame, Throwable exception) {
-////                System.out.println("Entered onReturnExceptional for ExecutionEventListener");
-//
-//            }
-//
-//            //@Override
-//            public Object onUnwind(EventContext context, VirtualFrame frame, Object info) {
-//                return info;
-//            }
-//        });
         instrumenter.attachExecutionEventFactory(filter, new ExecutionEventNodeFactory(){
 
             @Override
             public ExecutionEventNode create(EventContext context) {
+                System.out.println("<<<<<<<<< Entered ExecutionEventNodeFactory create");
 //                System.out.println(context.getInstrumentedNode().getEncapsulatingSourceSection().getCharacters());
                 return new ExecutionEventNode() {
                     @Override
                     protected void onEnter(VirtualFrame frame) {
                         try {
+                            System.out.println("<<<<<<<<< Entered ExecutionEventNode onEnter");
                             Node node = context.getInstrumentedNode();
                             Iterator<Node> nodeIterator = node.getChildren().iterator();
                             String methodName = nodeIterator.next().getSourceSection().getCharacters().toString();
@@ -178,19 +131,7 @@ public final class Valkyrie extends TruffleInstrument {
 
                     @Override
                     public void onReturnValue(VirtualFrame frame, Object result) {
-////                        try {
-//                            System.out.println();
-//                            System.out.println(result);
-//
-////                            System.out.println((String)result);
-//
-//
-//                            System.out.println(isJSUserObject(result));
-//
-//                            DynamicObject obj = (DynamicObject) result;
-//
-//                            System.out.println(obj.get("to"));
-//
+
                     }
 
                     @Override
@@ -210,11 +151,9 @@ public final class Valkyrie extends TruffleInstrument {
 
 //        this.controller = new ProgramController(env);
         controller = factory.create(env);
-        System.out.println("Registering Controller");
         env.registerService(controller);
 //        System.out.println(env.lookup(env.getInstruments().get("Valkyrie"), ProgramController.class));
-        System.out.println("Registered Controller");
-        System.out.println(controller.getNewAssetInstances());
+        System.out.println("<<<<<<<<< Initialized controller - finished instrument onCreate ");
         this.env = env;
     }
 
@@ -233,8 +172,7 @@ public final class Valkyrie extends TruffleInstrument {
 
     @Override
     protected void onDispose(TruffleInstrument.Env env) {
-        System.out.println("<<<<<<<<Entered onDispose");
-        System.out.println(controller.getNewAssetInstances());
+        controller = null;
     }
 
     @Override

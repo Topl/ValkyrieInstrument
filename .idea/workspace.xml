@@ -4,18 +4,23 @@
     <list default="true" id="4abf6de8-29d3-40fd-b0e6-77d90a39fff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProfilerToolFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ServiceFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProfilerToolFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$ArbitInstance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$ArbitInstance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$AssetInstance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$AssetInstance.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$TokenInstance.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$TokenInstance.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,20 +46,20 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="75" />
+          <entry key="class" value="77" />
           <entry key="iml" value="2" />
-          <entry key="instrument" value="8" />
-          <entry key="java" value="41" />
+          <entry key="instrument" value="9" />
+          <entry key="java" value="42" />
           <entry key="lst" value="1" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="75" />
+          <entry key="CLASS" value="77" />
           <entry key="IDEA_MODULE" value="2" />
-          <entry key="JAVA" value="39" />
-          <entry key="PLAIN_TEXT" value="9" />
+          <entry key="JAVA" value="40" />
+          <entry key="PLAIN_TEXT" value="10" />
           <entry key="Scratch" value="2" />
           <entry key="XML" value="5" />
         </counts>
@@ -62,48 +67,41 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="class" value="5" />
-          <entry key="dummy" value="16" />
-          <entry key="java" value="13026" />
-          <entry key="xml" value="132" />
+          <entry key="dummy" value="30" />
+          <entry key="java" value="13586" />
+          <entry key="xml" value="134" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="13026" />
-          <entry key="PLAIN_TEXT" value="16" />
-          <entry key="XML" value="132" />
+          <entry key="JAVA" value="13586" />
+          <entry key="PLAIN_TEXT" value="30" />
+          <entry key="XML" value="134" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47212166">
+    <splitter split-orientation="horizontal" split-proportion="0.50187826">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-709">
-                  <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+                <state relative-caret-position="193">
+                  <caret line="155" column="83" selection-start-line="155" selection-start-column="83" selection-end-line="155" selection-end-column="83" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#10176#10177#0" expanded="true" />
-                    <element signature="e#10235#10236#0" expanded="true" />
-                    <element signature="e#11018#11019#0" expanded="true" />
-                    <element signature="e#11049#11050#0" expanded="true" />
-                    <element signature="e#11321#11322#0" expanded="true" />
-                    <element signature="e#11381#11382#0" expanded="true" />
+                    <element signature="e#7979#7980#0" expanded="true" />
+                    <element signature="e#8038#8039#0" expanded="true" />
+                    <element signature="e#8882#8883#0" expanded="true" />
+                    <element signature="e#8913#8914#0" expanded="true" />
+                    <element signature="e#8987#8988#0" expanded="true" />
+                    <element signature="e#9020#9021#0" expanded="true" />
+                    <element signature="e#9185#9186#0" expanded="true" />
+                    <element signature="e#9245#9246#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-878">
-                  <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
                 </state>
               </provider>
             </entry>
@@ -111,17 +109,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="jar:///Library/Java/JavaVirtualMachines/graalvm-ce-19.0.2/Contents/Home/src.zip!/java/lang/Class.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3602">
-                  <caret line="351" column="35" selection-start-line="351" selection-start-column="35" selection-end-line="351" selection-end-column="35" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProfilerToolFactory.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+                <state relative-caret-position="281">
+                  <caret line="676" column="23" selection-start-line="676" selection-start-column="23" selection-end-line="676" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
@@ -142,11 +131,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="810">
-                  <caret line="54" selection-start-line="54" selection-start-column="2" selection-end-line="58" selection-end-column="92" />
+                <state relative-caret-position="-152">
+                  <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -157,8 +146,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="jar://$USER_HOME$/Downloads/graal-sdk-19.0.0.jar!/org/graalvm/polyglot/Instrument.class">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+                <state relative-caret-position="105">
+                  <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
                   <folding>
                     <element signature="e#763#764#0" expanded="true" />
                     <element signature="e#808#809#0" expanded="true" />
@@ -194,11 +183,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+                <state relative-caret-position="556">
+                  <caret line="46" selection-start-line="46" selection-end-line="46" />
                 </state>
               </provider>
             </entry>
@@ -215,8 +204,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-524">
-                  <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+                <state relative-caret-position="1341">
+                  <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#2131#2132#0" expanded="true" />
@@ -276,9 +265,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Option/Valkyrie.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ValkyrieController.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProfilerToolFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
@@ -366,19 +356,48 @@
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="InstrumentTests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
+              <item name="annotations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="generated-sources" type="462c0819:PsiDirectoryNode" />
+              <item name="annotations" type="462c0819:PsiDirectoryNode" />
               <item name="InstrumentClasses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -397,9 +416,9 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562000255795" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562097326941" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.4450262" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
@@ -425,7 +444,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ValkyrieTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="ValkyrieInstrument" />
@@ -442,8 +461,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ValkyrieTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ValkyrieInstrument" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="InstrumentTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="InstrumentTests" />
+      <option name="MAIN_CLASS_NAME" value="InstrumentTests.ValkyrieTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.ValkyrieTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ValkyrieTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -468,11 +506,16 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="ValkyrieTest - 2019.07.02 at 14h 54m 59s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49911818" visible="true" weight="0.15689866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49911818" visible="true" weight="0.15811966" />
       <window_info id="Structure" order="1" sideWeight="0.50088185" side_tool="true" weight="0.24969475" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -481,7 +524,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24081632" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.21938775" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -534,22 +577,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/builtins/JSONBuiltinsFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/Option/Valkyrie.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#3896#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/instrumentation/Instrumenter.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -763,66 +790,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProfilerToolFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/graalvm-ce-19.0.2/Contents/Home/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3602">
-          <caret line="351" column="35" selection-start-line="351" selection-start-column="35" selection-end-line="351" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" selection-start-line="54" selection-start-column="2" selection-end-line="58" selection-end-column="92" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/graal-sdk-19.0.0.jar!/org/graalvm/polyglot/Instrument.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#808#809#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/graal-sdk-19.0.0.jar!/org/graalvm/polyglot/impl/AbstractPolyglotImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="293" selection-start-line="293" selection-end-line="293" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-524">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2131#2132#0" expanded="true" />
-            <element signature="e#2162#2163#0" expanded="true" />
-            <element signature="e#2221#2222#0" expanded="true" />
-            <element signature="e#2274#2275#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -884,33 +855,104 @@
     <entry file="file://$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="54" column="37" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-709">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10176#10177#0" expanded="true" />
-            <element signature="e#10235#10236#0" expanded="true" />
-            <element signature="e#11018#11019#0" expanded="true" />
-            <element signature="e#11049#11050#0" expanded="true" />
-            <element signature="e#11321#11322#0" expanded="true" />
-            <element signature="e#11381#11382#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-878">
+        <state relative-caret-position="90">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/Main.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/graal-sdk-19.0.0.jar!/org/graalvm/polyglot/Instrument.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding>
+            <element signature="e#763#764#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ServiceFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/graalvm-ce-19.0.2/Contents/Home/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="676" column="23" selection-start-line="676" selection-start-column="23" selection-end-line="676" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="155" column="83" selection-start-line="155" selection-start-column="83" selection-end-line="155" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7979#7980#0" expanded="true" />
+            <element signature="e#8038#8039#0" expanded="true" />
+            <element signature="e#8882#8883#0" expanded="true" />
+            <element signature="e#8913#8914#0" expanded="true" />
+            <element signature="e#8987#8988#0" expanded="true" />
+            <element signature="e#9020#9021#0" expanded="true" />
+            <element signature="e#9185#9186#0" expanded="true" />
+            <element signature="e#9245#9246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1341">
+          <caret line="133" column="40" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+            <element signature="e#2162#2163#0" expanded="true" />
+            <element signature="e#2221#2222#0" expanded="true" />
+            <element signature="e#2274#2275#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="658">
+          <caret line="56" column="71" selection-start-line="10" selection-start-column="8" selection-end-line="56" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

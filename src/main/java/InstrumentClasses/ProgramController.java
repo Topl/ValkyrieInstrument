@@ -51,9 +51,13 @@ public class ProgramController implements Closeable {
 //        this.boxesToRemove = new ArrayList<byte[]>();
 //    }
 
+    public void eval(String source) {
+        context.eval("js", source);
+        System.out.println("Finished eval");
+    }
 
     static {
-        Valkyrie.setFactory(new ProfilerToolFactory<ProgramController>() {
+        Valkyrie.setFactory(new ServiceFactory<ProgramController>() {
             @Override
             public ProgramController create(TruffleInstrument.Env env) {
                 return new ProgramController(env);
@@ -73,12 +77,12 @@ public class ProgramController implements Closeable {
         return Valkyrie.getController(engine);
     }
 
-    public static void setArbitBoxesForUse(Map<byte[], ArbitInstance> arbitInstances) {
-        arbitBoxesForUse = arbitInstances;
+    public void setArbitBoxesForUse(Map<byte[], ArbitInstance> arbitInstances) {
+        this.arbitBoxesForUse = arbitInstances;
     }
 
-    public static void setAssetBoxesForUse(Map<byte[], AssetInstance> assetInstances) {
-        assetBoxesForUse = assetInstances;
+    public void setAssetBoxesForUse(Map<byte[], AssetInstance> assetInstances) {
+        this.assetBoxesForUse = assetInstances;
     }
 
     public  ArrayList<AssetInstance> getNewAssetInstances() {
@@ -92,8 +96,6 @@ public class ProgramController implements Closeable {
 
 
 
-
-
     /*
     Methods to be used by instrument for updating values for caught Valkyrie functions
     */
@@ -102,8 +104,6 @@ public class ProgramController implements Closeable {
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount, data));
         System.out.println(newAssets.size());
     }
-
-
 
 
     /*
@@ -121,12 +121,9 @@ public class ProgramController implements Closeable {
     }
 
     public static final class AssetInstance extends TokenInstance{
-        String publicKey;
         String issuer;
         String assetCode;
-        Long amount;
         String data;
-        String instanceType;
 
         AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
             this.publicKey = publicKey;
@@ -143,9 +140,6 @@ public class ProgramController implements Closeable {
     }
 
     public static final class ArbitInstance extends TokenInstance{
-        String publicKey;
-        Long amount;
-        String instanceType;
 
         ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
             this.publicKey = publicKey;
