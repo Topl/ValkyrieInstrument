@@ -17,13 +17,13 @@ public class ProgramController implements Closeable {
 
     //Input map of boxId to box for all boxes available for use during program execution
     //Bifrost boxes from wallet should be cast into instances of local token classes
-    private static Map<byte[], AssetInstance> assetBoxesForUse;
-    private static Map<byte[], ArbitInstance> arbitBoxesForUse;
+    private ArrayList<AssetInstance> assetBoxesForUse;
+    private ArrayList<ArbitInstance> arbitBoxesForUse;
 
     private  ArrayList<AssetInstance> newAssets;
-    private static ArrayList<ArbitInstance> newArbits;
+    private ArrayList<ArbitInstance> newArbits;
 
-    private static ArrayList<byte[]> boxesToRemove;
+    private ArrayList<byte[]> boxesToRemove;
 
     private SourceSectionFilter filter = null;
 
@@ -77,12 +77,23 @@ public class ProgramController implements Closeable {
         return Valkyrie.getController(engine);
     }
 
-    public void setArbitBoxesForUse(Map<byte[], ArbitInstance> arbitInstances) {
+    public void setArbitBoxesForUse(ArrayList<ArbitInstance> arbitInstances) {
         this.arbitBoxesForUse = arbitInstances;
     }
 
-    public void setAssetBoxesForUse(Map<byte[], AssetInstance> assetInstances) {
+    public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
         this.assetBoxesForUse = assetInstances;
+    }
+
+    public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
+        for(TokenInstance instance: tokenInstances) {
+            if(instance.instanceType.equals("Asset")) {
+                this.assetBoxesForUse.add((AssetInstance)instance);
+            }
+            else if(instance.instanceType.equals("Arbit")) {
+                this.arbitBoxesForUse.add((ArbitInstance)instance);
+            }
+        }
     }
 
     public  ArrayList<AssetInstance> getNewAssetInstances() {
@@ -99,10 +110,15 @@ public class ProgramController implements Closeable {
     /*
     Methods to be used by instrument for updating values for caught Valkyrie functions
     */
-    protected  void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
+    protected void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
         System.out.println("Entered createAssets in PC");
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount, data));
-        System.out.println(newAssets.size());
+    }
+
+    protected void transferAssets(String issuer, String from, String to, Long amount, String assetCode, Long fee) {
+    }
+
+    protected void transferArbits(String from, String to, Long amount, Long fee) {
     }
 
 
@@ -114,6 +130,7 @@ public class ProgramController implements Closeable {
         String instanceType;
         String publicKey;
         Long amount;
+        byte[] boxId;
 
         public String getInstanceType() {
             return instanceType;
@@ -134,6 +151,16 @@ public class ProgramController implements Closeable {
             this.instanceType = "Asset";
         }
 
+        AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
+            this.publicKey = publicKey;
+            this.amount = amount;
+            this.assetCode = assetCode;
+            this.issuer = issuer;
+            this.data = data;
+            this.instanceType = "Asset";
+            this.boxId = boxId;
+        }
+
         public String getInstanceType() {
             return super.getInstanceType();
         }
@@ -145,6 +172,13 @@ public class ProgramController implements Closeable {
             this.publicKey = publicKey;
             this.amount = amount;
             this.instanceType = "Arbit";
+        }
+
+        ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
+            this.publicKey = publicKey;
+            this.amount = amount;
+            this.instanceType = "Arbit";
+            this.boxId = boxId;
         }
 
         public String getInstanceType() {

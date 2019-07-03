@@ -25,8 +25,6 @@ public class ValkyrieTest {
                 "function add(){a = addResult(); function addResult(){return 2 + 2}}" ;
 
 
-        //        TruffleInstrument.Env env = engine.getInstruments().get("Valkyrie").lookup(Valkyrie.class).getEnv();
-//        assert(env.getInstruments().containsKey("Valkyrie") == true);
         Context context = Context
                 .newBuilder("js")
                 .option("Valkyrie", "true")
@@ -35,7 +33,7 @@ public class ValkyrieTest {
 
 //        ProgramController controller = new ProgramController(context);
 
-        System.out.println(Valkyrie.getController(context.getEngine()));
+        assert (Valkyrie.getController(context.getEngine()) != null);
 
 //        //Setup controller
 //        ProgramController controller = ProgramController.find(context.getEngine());
@@ -49,14 +47,13 @@ public class ValkyrieTest {
 //
 //        ProgramController controller = valkyrieInstrument.lookup(ProgramController.class);
 
-        ProgramController controller2 = ProgramController.find(context.getEngine());
-        System.out.println(controller2);
+        ProgramController controller = ProgramController.find(context.getEngine());
+        System.out.println(controller);
         context.eval("js", testValkyrie);
         context.eval("js", "create()");
-        System.out.println(controller2.getNewAssetInstances());
-//        System.out.println(context.getBindings("js").getMemberKeys());
-        System.out.println(context.getBindings("js").getMember("res"));
-//        System.out.println(ProgramController.getNewAssetInstances());
+        assert(!controller.getNewAssetInstances().isEmpty());
+
+        assert(context.getBindings("js").getMember("res").as(boolean.class));
 
     }
 
