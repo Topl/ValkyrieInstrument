@@ -8,22 +8,29 @@ import org.junit.jupiter.api.Test;
 
 public class ValkyrieTest {
 
+
+    String test =
+            "function add(){a = addResult(); function addResult(){return 2 + 2}}";
+
+    String testValkyrie =
+            "issuer = 'b';" +
+            "issuer = 'bc';" +
+            "function create() { " +
+            "   var toAddress = 'a';" +
+            "   res = Valkyrie_createAssets(issuer, toAddress, 10, 'testAssets', 0, ''); " +
+            "   a = 2 + 2; }" +
+            "function transferAssets() {" +
+            "   var fromAddress = 'a';" +
+            "   var toAddress = 'def';" +
+            "   res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, 10, 'testAssets', 0);}" +
+            "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
+            "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
+            "   return res; }; " +
+            "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
+            "   res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
+            "   return res; }; ";
     @Test
     void build() {
-        String testValkyrie =
-                "issuer = 'b';"+
-                        "issuer = 'bc';" +
-                        "function create() { " +
-                        "var toAddress = 'a';" +
-                        "res = Valkyrie_createAssets(issuer, toAddress, 10, 'testAssets', 0, ''); " +
-                        "a = 2 + 2; }" +
-                        "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
-                        "res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
-                        "return res; }; ";
-
-        String test =
-                "function add(){a = addResult(); function addResult(){return 2 + 2}}" ;
-
 
         Context context = Context
                 .newBuilder("js")
@@ -31,30 +38,50 @@ public class ValkyrieTest {
                 .allowAllAccess(true)
                 .build();
 
-//        ProgramController controller = new ProgramController(context);
 
         assert (Valkyrie.getController(context.getEngine()) != null);
+        assert(ProgramController.find(context.getEngine()) != null);
+    }
 
-//        //Setup controller
+//    @Test
+//    void testCreate() {
+//
+//        Context context = Context
+//                .newBuilder("js")
+//                .option("Valkyrie", "true")
+//                .allowAllAccess(true)
+//                .build();
+//
+//        Instrument valkyrieInstrument = context.getEngine().getInstruments().get("Valkyrie");
+//
 //        ProgramController controller = ProgramController.find(context.getEngine());
-//        assert (controller != null);
+//        context.eval("js", testValkyrie);
+//        context.eval("js", "create()");
+//        assert (!controller.getNewAssetInstances().isEmpty());
+//
+//        assert (context.getBindings("js").getMember("res").as(boolean.class));
+//    }
+
+    @Test
+    void testTransferAssets() {
+        Context context = Context
+                .newBuilder("js")
+                .option("Valkyrie", "true")
+                .allowAllAccess(true)
+                .build();
 
         Instrument valkyrieInstrument = context.getEngine().getInstruments().get("Valkyrie");
 
-//        System.out.println(valkyrieInstrument);
-//        System.out.println(valkyrieInstrument.getOptions());
-//        System.out.println(valkyrieInstrument.lookup(ProgramController.class));
-//
-//        ProgramController controller = valkyrieInstrument.lookup(ProgramController.class);
-
         ProgramController controller = ProgramController.find(context.getEngine());
-        System.out.println(controller);
         context.eval("js", testValkyrie);
         context.eval("js", "create()");
-        assert(!controller.getNewAssetInstances().isEmpty());
+        context.eval("js", "transferAssets()");
 
-        assert(context.getBindings("js").getMember("res").as(boolean.class));
+        assert (!controller.getNewAssetInstances().isEmpty());
+        assert (context.getBindings("js").getMember("res").as(boolean.class));
 
+        assert(controller.getNewAssetInstances().size() == 1);
+        assert(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
     }
 
 }

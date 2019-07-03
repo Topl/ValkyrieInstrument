@@ -20,6 +20,8 @@ public class ProgramController implements Closeable {
     private ArrayList<AssetInstance> assetBoxesForUse;
     private ArrayList<ArbitInstance> arbitBoxesForUse;
 
+    private Long feesCollected;
+
     private  ArrayList<AssetInstance> newAssets;
     private ArrayList<ArbitInstance> newArbits;
 
@@ -69,9 +71,9 @@ public class ProgramController implements Closeable {
     Methods to be used on scala side for initializing controller
      */
 
-    public static synchronized void setFilter(SourceSectionFilter filter) {
-        filter = filter;
-    }
+//    public static synchronized void setFilter(SourceSectionFilter filter) {
+//        filter = filter;
+//    }
 
     public static ProgramController find(Engine engine) {
         return Valkyrie.getController(engine);
@@ -96,9 +98,18 @@ public class ProgramController implements Closeable {
         }
     }
 
-    public  ArrayList<AssetInstance> getNewAssetInstances() {
+    public ArrayList<AssetInstance> getNewAssetInstances() {
         System.out.println("Entered getNewAssets in PC");
         return newAssets;
+    }
+
+    public ArrayList<ArbitInstance> getNewArbitInstances() {
+        System.out.println("Entered getNewAssets in PC");
+        return newArbits;
+    }
+
+    public Long getFeesCollected() {
+        return new Long(0);
     }
 
     public void close() {
@@ -110,12 +121,34 @@ public class ProgramController implements Closeable {
     /*
     Methods to be used by instrument for updating values for caught Valkyrie functions
     */
+    //TODO collect fees otherwise value is being bled out
     protected void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
         System.out.println("Entered createAssets in PC");
-        newAssets.add(new AssetInstance(to, issuer, assetCode, amount, data));
+        newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
     }
 
     protected void transferAssets(String issuer, String from, String to, Long amount, String assetCode, Long fee) {
+        //Transferring assets from newly created assets first, until total transfer amount is reach
+        Long amountCollected = new Long(0);
+        for(AssetInstance instance: newAssets) {
+            if(instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
+                newAssets.remove(instance);
+                amountCollected += instance.amount;
+                if(amountCollected <= amount) {
+                    newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
+                }
+                else {
+                    Long change = new Long(amountCollected - amount);
+                    newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
+                    newAssets.add(new AssetInstance(from, instance.issuer, instance.assetCode, change, instance.data));
+                    break;
+                }
+            }
+            //If assetBox is not what we're looking for, do nothing
+        }
+
+        //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller
+
     }
 
     protected void transferArbits(String from, String to, Long amount, Long fee) {
@@ -127,10 +160,10 @@ public class ProgramController implements Closeable {
      */
 
     public static class TokenInstance {
-        String instanceType;
-        String publicKey;
-        Long amount;
-        byte[] boxId;
+        public String instanceType;
+        public String publicKey;
+        public Long amount;
+        public byte[] boxId;
 
         public String getInstanceType() {
             return instanceType;
@@ -138,9 +171,9 @@ public class ProgramController implements Closeable {
     }
 
     public static final class AssetInstance extends TokenInstance{
-        String issuer;
-        String assetCode;
-        String data;
+        public String issuer;
+        public String assetCode;
+        public String data;
 
         AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
             this.publicKey = publicKey;

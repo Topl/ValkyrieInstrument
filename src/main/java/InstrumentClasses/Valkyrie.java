@@ -63,32 +63,35 @@ public final class Valkyrie extends TruffleInstrument {
                             System.out.println(methodName);
                             System.out.println("Frame arguments length \n " + frame.getArguments().length);
 
+                            System.out.println(methodName + " contains period? " + methodName.contains("."));
+
                             if (methodName.contains(".")) {
                                 String separatedNames[] = methodName.split("\\.");
+
                                 switch (separatedNames[0]) {
                                     case "ValkyrieReserved":
                                         switch(separatedNames[1]) {
-                                            case "createAssets":
+                                            case "createAssets": {
                                                 try {
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
 
                                                     if (functionArguments.length == 6) {
 //                                                        try {
-                                                            //TODO correct parsing of values, specifically Longs
-                                                            String issuer = (String) functionArguments[0];
-                                                            String to = (String) functionArguments[1];
-                                                            Long amount = new Long((Integer) functionArguments[2]);
-                                                            String assetCode = (String) functionArguments[3];
-                                                            Long fee = new Long((Integer) functionArguments[4]);
-                                                            String data = (String) functionArguments[5];
-                                                            System.out.println(separatedNames[0] + "\n" + separatedNames[1] + "\n" + issuer + "\n" + to + "\n" + amount + "\n" + assetCode + "\n" + fee + "\n" + data);
+                                                        //TODO correct parsing of values, specifically Longs
+                                                        String issuer = (String) functionArguments[0];
+                                                        String to = (String) functionArguments[1];
+                                                        Long amount = new Long((Integer) functionArguments[2]);
+                                                        String assetCode = (String) functionArguments[3];
+                                                        Long fee = new Long((Integer) functionArguments[4]);
+                                                        String data = (String) functionArguments[5];
+                                                        System.out.println(separatedNames[0] + "\n" + separatedNames[1] + "\n" + issuer + "\n" + to + "\n" + amount + "\n" + assetCode + "\n" + fee + "\n" + data);
 
-                                                            //Make transaction using Controller
-                                                            controller.createAssets(issuer, to, amount, assetCode, fee, data);
+                                                        //Make transaction using Controller
+                                                        controller.createAssets(issuer, to, amount, assetCode, fee, data);
 
-                                                            //TODO return tx json like API does
-                                                            CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                            throw context.createUnwind(true);
+                                                        //TODO return tx json like API does
+                                                        CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                        throw context.createUnwind(true);
 
 //                                                        }
 //
@@ -97,19 +100,56 @@ public final class Valkyrie extends TruffleInstrument {
 //                                                            CompilerDirectives.transferToInterpreterAndInvalidate();
 //                                                            throw context.createUnwind("Error: Invalid arguments types");
 //                                                        }
-                                                    }
-
-                                                    else {
+                                                    } else {
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                        throw context.createUnwind("Error: Incorrect number of arguments");
+                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_createAssets");
                                                     }
-                                                }
-
-                                                catch (Exception e) {
+                                                } catch (Exception e) {
                                                     System.out.println(e);
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
                                                     throw context.createUnwind(e);
                                                 }
+                                            }
+
+                                            case "transferAssets": {
+                                                try {
+                                                    Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
+
+                                                    if (functionArguments.length == 6) {
+//                                                        try {
+                                                        //TODO correct parsing of values, specifically Longs
+                                                        String issuer = (String) functionArguments[0];
+                                                        String from = (String) functionArguments[1];
+                                                        String to = (String) functionArguments[2];
+                                                        Long amount = new Long((Integer) functionArguments[3]);
+                                                        String assetCode = (String) functionArguments[4];
+                                                        Long fee = new Long((Integer) functionArguments[5]);
+                                                        System.out.println(separatedNames[0] + "\n" + separatedNames[1] + "\n" + issuer + "\n" + from + "\n" + to + "\n" + amount + "\n" + assetCode + "\n" + fee);
+
+                                                        //Make transaction using Controller
+                                                        controller.transferAssets(issuer, from, to, amount, assetCode, fee);
+
+                                                        //TODO return tx json like API does
+                                                        CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                        throw context.createUnwind(true);
+
+//                                                        }
+//
+//                                                        catch (Exception e) {
+//                                                            System.out.println(e.getMessage());
+//                                                            CompilerDirectives.transferToInterpreterAndInvalidate();
+//                                                            throw context.createUnwind("Error: Invalid arguments types");
+//                                                        }
+                                                    } else {
+                                                        CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_transferAssets");
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println(e);
+                                                    CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                    throw context.createUnwind(e);
+                                                }
+                                            }
 
                                             default:
                                                 CompilerDirectives.transferToInterpreterAndInvalidate();
