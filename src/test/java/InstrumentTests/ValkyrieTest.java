@@ -96,7 +96,6 @@ public class ValkyrieTest {
         ProgramController controller = ProgramController.find(context.getEngine());
 
         AssetInstance assetInstance = new AssetInstance("a", "bc", "testAssets", new Long(12), "", inputBox);
-        System.out.println(assetInstance.boxId);
         ArrayList<AssetInstance> assetBoxesForUse = new ArrayList();
         assetBoxesForUse.add(assetInstance);
         controller.setAssetBoxesForUse(assetBoxesForUse);

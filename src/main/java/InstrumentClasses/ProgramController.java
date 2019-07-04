@@ -79,8 +79,6 @@ public class ProgramController implements Closeable {
             assert(instance.boxId != null);
         }
         this.assetBoxesForUse = assetInstances;
-        System.out.println("Finished setting asset boxes for use");
-        System.out.println(this.assetBoxesForUse.size());
     }
 
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
