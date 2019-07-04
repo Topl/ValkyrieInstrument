@@ -1,5 +1,8 @@
 package InstrumentClasses;
 
+import InstrumentClasses.TokenClasses.ArbitInstance;
+import InstrumentClasses.TokenClasses.AssetInstance;
+import InstrumentClasses.TokenClasses.TokenInstance;
 import com.oracle.truffle.api.instrumentation.Instrumenter;
 import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
@@ -8,7 +11,6 @@ import org.graalvm.polyglot.Engine;
 
 import java.io.Closeable;
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class ProgramController implements Closeable {
@@ -27,9 +29,9 @@ public class ProgramController implements Closeable {
 
     private ArrayList<byte[]> boxesToRemove;
 
-    private SourceSectionFilter filter = null;
-
-    private final Instrumenter instrumenter;
+//    private SourceSectionFilter filter = null;
+//
+//    private final Instrumenter instrumenter;
 
     private final TruffleInstrument.Env env;
 
@@ -37,25 +39,10 @@ public class ProgramController implements Closeable {
         newAssets = new ArrayList<AssetInstance>();
         boxesToRemove = new ArrayList<byte[]>();
         this.env = env;
-        this.instrumenter = null;
     }
 
-    ProgramController(Instrumenter instrumenter) {
-        newAssets = new ArrayList<AssetInstance>();
-        boxesToRemove = new ArrayList<byte[]>();
-        this.instrumenter = instrumenter;
-        this.env = null;
-    }
-
-//    public ProgramController(Context context) {
-//        this.context = context;
-//        this.newAssets = new ArrayList<AssetInstance>();
-//        this.boxesToRemove = new ArrayList<byte[]>();
-//    }
-
-    public void eval(String source) {
+    public void evalJS(String source) {
         context.eval("js", source);
-        System.out.println("Finished eval");
     }
 
     static {
@@ -66,6 +53,7 @@ public class ProgramController implements Closeable {
             }
         });
     }
+
 
     /*
     Methods to be used on scala side for initializing controller
@@ -80,15 +68,24 @@ public class ProgramController implements Closeable {
     }
 
     public void setArbitBoxesForUse(ArrayList<ArbitInstance> arbitInstances) {
+        for(ArbitInstance instance: arbitInstances) {
+            assert(instance.boxId != null);
+        }
         this.arbitBoxesForUse = arbitInstances;
     }
 
     public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
+        for(AssetInstance instance: assetInstances) {
+            assert(instance.boxId != null);
+        }
         this.assetBoxesForUse = assetInstances;
+        System.out.println("Finished setting asset boxes for use");
+        System.out.println(this.assetBoxesForUse.size());
     }
 
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
         for(TokenInstance instance: tokenInstances) {
+            assert(instance.boxId != null);
             if(instance.instanceType.equals("Asset")) {
                 this.assetBoxesForUse.add((AssetInstance)instance);
             }
@@ -99,17 +96,20 @@ public class ProgramController implements Closeable {
     }
 
     public ArrayList<AssetInstance> getNewAssetInstances() {
-        System.out.println("Entered getNewAssets in PC");
         return newAssets;
     }
 
     public ArrayList<ArbitInstance> getNewArbitInstances() {
-        System.out.println("Entered getNewAssets in PC");
         return newArbits;
     }
 
+    public ArrayList<byte[]> getBoxesToRemove() {
+        return boxesToRemove;
+    }
+
+    //TODO implement
     public Long getFeesCollected() {
-        return new Long(0);
+        return feesCollected;
     }
 
     public void close() {
@@ -123,13 +123,17 @@ public class ProgramController implements Closeable {
     */
     //TODO collect fees otherwise value is being bled out
     protected void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
-        System.out.println("Entered createAssets in PC");
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
+        //TODO fees
+//        feesCollected += fee;
     }
 
     protected void transferAssets(String issuer, String from, String to, Long amount, String assetCode, Long fee) {
+        //TODO Look into writing rollback function for greater efficiency in preventing partial state updates
+        assert(checkEnoughAssetsAvailableForTransfer(from, amount, fee, assetCode, issuer)): "Not enough funds available for asset transfer";
         //Transferring assets from newly created assets first, until total transfer amount is reach
         Long amountCollected = new Long(0);
+        Long change = new Long(0);
         for(AssetInstance instance: newAssets) {
             if(instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                 newAssets.remove(instance);
@@ -138,7 +142,7 @@ public class ProgramController implements Closeable {
                     newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
                 }
                 else {
-                    Long change = new Long(amountCollected - amount);
+                    change = new Long(amountCollected - amount);
                     newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
                     newAssets.add(new AssetInstance(from, instance.issuer, instance.assetCode, change, instance.data));
                     break;
@@ -147,7 +151,29 @@ public class ProgramController implements Closeable {
             //If assetBox is not what we're looking for, do nothing
         }
 
-        //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller
+        //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller to fund transfer
+
+        if(amountCollected < amount) {
+            for(AssetInstance instance: assetBoxesForUse) {
+                if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
+                    assetBoxesForUse.remove(instance);
+                    boxesToRemove.add(instance.boxId);
+                    amountCollected += instance.amount;
+                    if(amountCollected <= amount) {
+                        newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
+                    }
+                    else {
+                        change = new Long(amountCollected - amount);
+                        newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
+                        newAssets.add(new AssetInstance(from, instance.issuer, instance.assetCode, change, instance.data));
+                        break;
+                    }
+                }
+            }
+        }
+        //TODO Fee
+//        feesCollected += fee;
+        assert(amountCollected == amount + change);
 
     }
 
@@ -155,67 +181,51 @@ public class ProgramController implements Closeable {
     }
 
 
-    /*
-    Classes to represent token boxes
-     */
-
-    public static class TokenInstance {
-        public String instanceType;
-        public String publicKey;
-        public Long amount;
-        public byte[] boxId;
-
-        public String getInstanceType() {
-            return instanceType;
+    //Helper
+    private boolean checkEnoughAssetsAvailableForTransfer(String from, Long amount, Long fee, String assetCode, String issuer) {
+        Long availableAmount = new Long(0);
+        for(AssetInstance instance: newAssets) {
+            if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
+                availableAmount += instance.amount;
+                if(availableAmount >= amount) {
+                    return true;
+                }
+            }
         }
+
+        for(AssetInstance instance: assetBoxesForUse) {
+            if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
+                availableAmount += instance.amount;
+                if(availableAmount >= amount) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
-    public static final class AssetInstance extends TokenInstance{
-        public String issuer;
-        public String assetCode;
-        public String data;
-
-        AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
-            this.publicKey = publicKey;
-            this.amount = amount;
-            this.assetCode = assetCode;
-            this.issuer = issuer;
-            this.data = data;
-            this.instanceType = "Asset";
+    //Helper
+    private boolean checkEnoughArbitsAvailableForTransfer(String from, Long amount, Long fee) {
+        Long availableAmount = new Long(0);
+        for(ArbitInstance instance: newArbits) {
+            if (instance.publicKey.equals(from)) {
+                availableAmount += instance.amount;
+                if(availableAmount >= amount) {
+                    return true;
+                }
+            }
         }
 
-        AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
-            this.publicKey = publicKey;
-            this.amount = amount;
-            this.assetCode = assetCode;
-            this.issuer = issuer;
-            this.data = data;
-            this.instanceType = "Asset";
-            this.boxId = boxId;
+        for(ArbitInstance instance: arbitBoxesForUse) {
+            if (instance.publicKey.equals(from)) {
+                availableAmount += instance.amount;
+                if(availableAmount >= amount) {
+                    return true;
+                }
+            }
         }
 
-        public String getInstanceType() {
-            return super.getInstanceType();
-        }
-    }
-
-    public static final class ArbitInstance extends TokenInstance{
-
-        ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
-            this.publicKey = publicKey;
-            this.amount = amount;
-            this.instanceType = "Arbit";
-        }
-
-        ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
-            this.publicKey = publicKey;
-            this.amount = amount;
-            this.instanceType = "Arbit";
-            this.boxId = boxId;
-        }
-
-        public String getInstanceType() {
-            return super.getInstanceType();
-        }
+        return false;
     }
 }

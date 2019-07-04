@@ -87,9 +87,6 @@
                                 <!--<source>target/classes/InstrumentClasses/</source>-->
                             </sources>
                         </configuration>
-                        <!--<configuration>-->
-                            <!--<mainClass>src/main/java/Main</mainClass>-->
-                        <!--</configuration>-->
                     </execution>
                 </executions>
             </plugin>
