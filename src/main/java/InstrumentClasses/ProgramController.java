@@ -36,9 +36,17 @@ public class ProgramController implements Closeable {
     private final TruffleInstrument.Env env;
 
     ProgramController(TruffleInstrument.Env env) {
-        newAssets = new ArrayList<AssetInstance>();
-        boxesToRemove = new ArrayList<byte[]>();
+        newAssets = new ArrayList<>();
+        newArbits = new ArrayList<>();
+        boxesToRemove = new ArrayList<>();
+        assetBoxesForUse = new ArrayList<>();
+        arbitBoxesForUse = new ArrayList<>();
+        feesCollected = new Long(0);
         this.env = env;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public void evalJS(String source) {
@@ -110,8 +118,16 @@ public class ProgramController implements Closeable {
         return feesCollected;
     }
 
-    public void close() {
+    public void clear() {
+        assetBoxesForUse.clear();
+        arbitBoxesForUse.clear();
+        boxesToRemove.clear();
+        newArbits.clear();
+        newAssets.clear();
+        feesCollected = new Long(0);
+    }
 
+    public void close() {
     }
 
 
@@ -176,6 +192,52 @@ public class ProgramController implements Closeable {
     }
 
     protected void transferArbits(String from, String to, Long amount, Long fee) {
+        //TODO Look into writing rollback function for greater efficiency in preventing partial state updates
+        assert(checkEnoughArbitsAvailableForTransfer(from, amount, fee)): "Not enough funds available for arbit transfer";
+        //Transferring arbits from newly created arbits first, until total transfer amount is reach
+        Long amountCollected = new Long(0);
+        Long change = new Long(0);
+        for(ArbitInstance instance: newArbits) {
+            if(instance.publicKey.equals(from)) {
+                newArbits.remove(instance);
+                amountCollected += instance.amount;
+                if(amountCollected <= amount) {
+                    newArbits.add(new ArbitInstance(to, instance.amount));
+                }
+                else {
+                    change = new Long(amountCollected - amount);
+                    newArbits.add(new ArbitInstance(to, instance.amount - change));
+                    newArbits.add(new ArbitInstance(from, change));
+                    break;
+                }
+            }
+            //If arbitBox is not what we're looking for, do nothing
+        }
+
+        //If total transfer amount not reached from newly created arbits, use boxes provided as arguments to controller to fund transfer
+
+        if(amountCollected < amount) {
+            for(ArbitInstance instance: arbitBoxesForUse) {
+                if (instance.publicKey.equals(from)) {
+                    arbitBoxesForUse.remove(instance);
+                    boxesToRemove.add(instance.boxId);
+                    amountCollected += instance.amount;
+                    if(amountCollected <= amount) {
+                        newArbits.add(new ArbitInstance(to, instance.amount));
+                    }
+                    else {
+                        change = new Long(amountCollected - amount);
+                        newArbits.add(new ArbitInstance(to,instance.amount - change));
+                        newArbits.add(new ArbitInstance(from, change));
+                        break;
+                    }
+                }
+            }
+        }
+        //TODO Fee
+//        feesCollected += fee;
+        assert(amountCollected == amount + change);
+
     }
 
 

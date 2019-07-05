@@ -2,13 +2,13 @@ package InstrumentClasses.TokenClasses;
 
 public class ArbitInstance extends TokenInstance{
 
-    ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
+    public ArbitInstance(String publicKey, Long amount) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Arbit";
     }
 
-    ArbitInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
+    public ArbitInstance(String publicKey, Long amount, byte[] boxId) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Arbit";

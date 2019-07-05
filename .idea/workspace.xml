@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4abf6de8-29d3-40fd-b0e6-77d90a39fff7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -32,7 +32,7 @@
           <entry key="class" value="79" />
           <entry key="iml" value="3" />
           <entry key="instrument" value="12" />
-          <entry key="java" value="50" />
+          <entry key="java" value="51" />
           <entry key="lst" value="1" />
           <entry key="xml" value="5" />
         </counts>
@@ -41,7 +41,7 @@
         <counts>
           <entry key="CLASS" value="79" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="48" />
+          <entry key="JAVA" value="49" />
           <entry key="PLAIN_TEXT" value="13" />
           <entry key="Scratch" value="2" />
           <entry key="XML" value="5" />
@@ -51,14 +51,14 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="dummy" value="30" />
-          <entry key="java" value="18026" />
+          <entry key="java" value="18434" />
           <entry key="xml" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="18026" />
+          <entry key="JAVA" value="18434" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="140" />
         </counts>
@@ -66,7 +66,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42355523">
+    <splitter split-orientation="horizontal" split-proportion="0.493782">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -92,10 +92,14 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="469">
-                  <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+                <state relative-caret-position="396">
+                  <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#1540#1541#0" expanded="true" />
+                    <element signature="e#1572#1573#0" expanded="true" />
+                    <element signature="e#1643#1644#0" expanded="true" />
+                    <element signature="e#1708#1709#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -110,24 +114,15 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="263">
-                  <caret line="98" selection-start-line="98" selection-end-line="98" />
+                <state relative-caret-position="495">
+                  <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -153,6 +148,15 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -172,6 +176,7 @@
       <find>addinstrumenter</find>
       <find>lookup</find>
       <find>contains</find>
+      <find>setContext</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -206,9 +211,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/TokenInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
         <option value="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" />
       </list>
     </option>
@@ -268,57 +273,6 @@
             </path>
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="InstrumentClasses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="InstrumentClasses" type="462c0819:PsiDirectoryNode" />
-              <item name="TokenClasses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="InstrumentTests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -333,7 +287,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562211765541" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562309642312" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -459,7 +413,7 @@
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49911818" visible="true" weight="0.16544567" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49911818" visible="true" weight="0.16544567" />
       <window_info id="Structure" order="1" sideWeight="0.50088185" side_tool="true" weight="0.24969475" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -468,7 +422,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3010204" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3010204" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34183672" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -841,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/graalvm-ce-19.0.2/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -875,20 +822,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="495">
+          <caret line="33" column="9" lean-forward="true" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="80" column="47" selection-start-line="80" selection-start-column="47" selection-end-line="80" selection-end-column="47" />
+        <state relative-caret-position="396">
+          <caret line="126" column="8" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1540#1541#0" expanded="true" />
+            <element signature="e#1572#1573#0" expanded="true" />
+            <element signature="e#1643#1644#0" expanded="true" />
+            <element signature="e#1708#1709#0" expanded="true" />
           </folding>
         </state>
       </provider>
