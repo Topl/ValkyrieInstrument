@@ -1,6 +1,7 @@
 package InstrumentTests;
 
 import InstrumentClasses.ProgramController;
+import InstrumentClasses.TokenClasses.ArbitInstance;
 import InstrumentClasses.TokenClasses.AssetInstance;
 import InstrumentClasses.Valkyrie;
 import org.graalvm.polyglot.Context;
@@ -25,11 +26,18 @@ public class ValkyrieTest {
             "   var fromAddress = 'a';" +
             "   var toAddress = 'def';" +
             "   res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, 10, 'testAssets', 0);}" +
+            "function transferArbits() {" +
+            "   var fromAddress = 'a';" +
+            "   var toAddress = 'def';" +
+            "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
             "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
             "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
             "   return res; }; " +
             "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
             "   res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
+            "   return res; }; " +
+            "function Valkyrie_transferArbits(from, to, amount, fee) {" +
+            "   res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
             "   return res; }; ";
     @Test
     void build() {
@@ -84,7 +92,7 @@ public class ValkyrieTest {
     }
 
     @Test
-    void transferWithInputBox() {
+    void transferAssetsWithInputBox() {
         Context context = Context
                 .newBuilder("js")
                 .option("Valkyrie", "true")
@@ -111,6 +119,35 @@ public class ValkyrieTest {
         assert(controller.getNewAssetInstances().get(1).publicKey.equals("a"));
         assert(controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount == assetInstance.amount);
 
+    }
+
+    @Test
+    void transferArbitsWithInputBox() {
+        Context context = Context
+                .newBuilder("js")
+                .option("Valkyrie", "true")
+                .allowAllAccess(true)
+                .build();
+
+        byte[] inputBox = {0, 1};
+
+        ProgramController controller = ProgramController.find(context.getEngine());
+
+        ArbitInstance arbitInstance = new ArbitInstance("a", new Long(12), inputBox);
+        ArrayList<ArbitInstance> arbitBoxesForUse = new ArrayList();
+        arbitBoxesForUse.add(arbitInstance);
+        controller.setArbitBoxesForUse(arbitBoxesForUse);
+
+        context.eval("js", testValkyrie);
+        context.eval("js", "transferArbits()");
+
+        assert(controller.getBoxesToRemove().size() == 1);
+        assert(controller.getBoxesToRemove().get(0) == inputBox);
+
+        assert(controller.getNewArbitInstances().size() == 2);
+        assert(controller.getNewArbitInstances().get(0).publicKey.equals("def"));
+        assert(controller.getNewArbitInstances().get(1).publicKey.equals("a"));
+        assert(controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount == arbitInstance.amount);
 
     }
 

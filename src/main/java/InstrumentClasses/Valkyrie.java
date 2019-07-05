@@ -127,6 +127,36 @@ public final class Valkyrie extends TruffleInstrument {
                                                 }
                                             }
 
+                                            case "transferArbits": {
+                                                try {
+                                                    Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
+
+                                                    if (functionArguments.length == 4) {
+                                                        //TODO correct parsing of values, specifically Longs
+                                                        String from = (String) functionArguments[0];
+                                                        String to = (String) functionArguments[1];
+                                                        Long amount = new Long((Integer) functionArguments[2]);
+                                                        Long fee = new Long((Integer) functionArguments[3]);
+                                                        System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + from + " " + to + " " + amount + " " + fee);
+
+                                                        //Make transaction using Controller
+                                                        controller.transferArbits(from, to, amount, fee);
+
+                                                        //TODO return tx json like API does
+                                                        CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                        throw context.createUnwind(true);
+
+                                                    } else {
+                                                        CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_transferArbits");
+                                                    }
+                                                } catch (Exception e) {
+                                                    System.out.println(e);
+                                                    CompilerDirectives.transferToInterpreterAndInvalidate();
+                                                    throw context.createUnwind(e);
+                                                }
+                                            }
+
                                             default:
                                                 CompilerDirectives.transferToInterpreterAndInvalidate();
                                                 throw context.createUnwind("Error: Method not found in Valkyrie namespace");
