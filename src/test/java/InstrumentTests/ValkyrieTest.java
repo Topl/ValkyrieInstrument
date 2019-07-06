@@ -34,10 +34,10 @@ public class ValkyrieTest {
             "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
             "   return res; }; " +
             "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
-            "   res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
+            "   var res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
             "   return res; }; " +
             "function Valkyrie_transferArbits(from, to, amount, fee) {" +
-            "   res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
+            "   var res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
             "   return res; }; ";
     @Test
     void build() {

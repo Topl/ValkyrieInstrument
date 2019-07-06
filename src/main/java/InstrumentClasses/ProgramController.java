@@ -39,8 +39,6 @@ public class ProgramController implements Closeable {
         newAssets = new ArrayList<>();
         newArbits = new ArrayList<>();
         boxesToRemove = new ArrayList<>();
-        assetBoxesForUse = new ArrayList<>();
-        arbitBoxesForUse = new ArrayList<>();
         feesCollected = new Long(0);
         this.env = env;
     }
@@ -79,14 +77,14 @@ public class ProgramController implements Closeable {
         for(ArbitInstance instance: arbitInstances) {
             assert(instance.boxId != null);
         }
-        this.arbitBoxesForUse = arbitInstances;
+        this.arbitBoxesForUse = (ArrayList<ArbitInstance>)arbitInstances.clone();
     }
 
     public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
         for(AssetInstance instance: assetInstances) {
             assert(instance.boxId != null);
         }
-        this.assetBoxesForUse = assetInstances;
+        this.assetBoxesForUse = (ArrayList<AssetInstance>)assetInstances.clone();
     }
 
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
@@ -167,7 +165,7 @@ public class ProgramController implements Closeable {
 
         //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller to fund transfer
 
-        if(amountCollected < amount) {
+        if(amountCollected < amount && assetBoxesForUse != null) {
             for(AssetInstance instance: assetBoxesForUse) {
                 if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                     assetBoxesForUse.remove(instance);
@@ -216,7 +214,7 @@ public class ProgramController implements Closeable {
 
         //If total transfer amount not reached from newly created arbits, use boxes provided as arguments to controller to fund transfer
 
-        if(amountCollected < amount) {
+        if(amountCollected < amount && arbitBoxesForUse != null) {
             for(ArbitInstance instance: arbitBoxesForUse) {
                 if (instance.publicKey.equals(from)) {
                     arbitBoxesForUse.remove(instance);
@@ -253,15 +251,16 @@ public class ProgramController implements Closeable {
             }
         }
 
-        for(AssetInstance instance: assetBoxesForUse) {
-            if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
-                availableAmount += instance.amount;
-                if(availableAmount >= amount) {
-                    return true;
+        if(assetBoxesForUse != null) {
+            for (AssetInstance instance : assetBoxesForUse) {
+                if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
+                    availableAmount += instance.amount;
+                    if (availableAmount >= amount) {
+                        return true;
+                    }
                 }
             }
         }
-
         return false;
     }
 
@@ -277,15 +276,16 @@ public class ProgramController implements Closeable {
             }
         }
 
-        for(ArbitInstance instance: arbitBoxesForUse) {
-            if (instance.publicKey.equals(from)) {
-                availableAmount += instance.amount;
-                if(availableAmount >= amount) {
-                    return true;
+        if(arbitBoxesForUse != null) {
+            for (ArbitInstance instance : arbitBoxesForUse) {
+                if (instance.publicKey.equals(from)) {
+                    availableAmount += instance.amount;
+                    if (availableAmount >= amount) {
+                        return true;
+                    }
                 }
             }
         }
-
         return false;
     }
 }

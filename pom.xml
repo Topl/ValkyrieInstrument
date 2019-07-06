@@ -31,7 +31,7 @@
             <artifactId>js</artifactId>
             <version>19.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.codehaus.mojo/build-helper-maven-plugin -->
+         <!--https://mvnrepository.com/artifact/org.codehaus.mojo/build-helper-maven-plugin-->
         <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>build-helper-maven-plugin</artifactId>
