@@ -71,6 +71,7 @@ public class ValkyrieTest {
         context.eval("js", "create()");
         assertFalse(controller.getNewAssetInstances().isEmpty());
         assertTrue(context.getBindings("js").getMember("res").asBoolean());
+        controller.clear();
     }
 
     @Test
@@ -92,6 +93,7 @@ public class ValkyrieTest {
         assertEquals(1, controller.getNewAssetInstances().size());
         assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
         assertEquals(10, controller.getNewAssetInstances().get(0).amount);
+        controller.clear();
     }
 
     @Test
@@ -123,7 +125,7 @@ public class ValkyrieTest {
         assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
         assertTrue(controller.getNewAssetInstances().get(1).publicKey.equals("a"));
         assertEquals(assetInstance.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
-
+        controller.clear();
     }
 
     @Test
@@ -155,6 +157,8 @@ public class ValkyrieTest {
         assertTrue(controller.getNewArbitInstances().get(0).publicKey.equals("def"));
         assertTrue(controller.getNewArbitInstances().get(1).publicKey.equals("a"));
         assertEquals(arbitInstance.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
+        controller.clear();
+
     }
 
 }

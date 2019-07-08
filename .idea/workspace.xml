@@ -7,10 +7,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" afterDir="false" />
     </list>
@@ -60,14 +58,14 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="dummy" value="30" />
-          <entry key="java" value="19881" />
+          <entry key="java" value="19937" />
           <entry key="xml" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="19881" />
+          <entry key="JAVA" value="19937" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="140" />
         </counts>
@@ -81,16 +79,14 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="545">
-                  <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
+                <state relative-caret-position="489">
+                  <caret line="231" column="27" selection-start-line="231" selection-start-column="27" selection-end-line="231" selection-end-column="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#12267#12268#0" expanded="true" />
                     <element signature="e#12326#12327#0" expanded="true" />
                     <element signature="e#11645#11646#0" expanded="true" />
                     <element signature="e#11676#11677#0" expanded="true" />
-                    <element signature="e#11750#11751#0" expanded="true" />
-                    <element signature="e#11783#11784#0" expanded="true" />
                     <element signature="e#13009#13010#0" expanded="true" />
                     <element signature="e#13069#13070#0" expanded="true" />
                   </folding>
@@ -191,11 +187,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="419">
-                  <caret line="140" column="83" selection-start-line="140" selection-start-column="83" selection-end-line="140" selection-end-column="83" />
+                <state relative-caret-position="612">
+                  <caret line="160" selection-start-line="160" selection-end-line="160" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -212,11 +208,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="404">
-                  <caret line="92" column="63" lean-forward="true" selection-start-line="92" selection-start-column="63" selection-end-line="92" selection-end-column="63" />
+                <state relative-caret-position="-1123">
+                  <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -277,11 +273,11 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/TokenInstance.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" />
         <option value="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
       </list>
     </option>
   </component>
@@ -500,7 +496,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="valkyrieinstrument" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562606573794" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562606913298" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -594,15 +590,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 38m 55s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 45m 15s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 45m 43s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ValkyrieTest - 2019.07.08 at 11h 46m 01s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
@@ -624,6 +611,15 @@
     <history-entry file="ValkyrieTest - 2019.07.08 at 12h 20m 39s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 22m 58s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 24m 31s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 27m 30s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -638,7 +634,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3010204" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20816326" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34183672" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1021,24 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12267#12268#0" expanded="true" />
-            <element signature="e#12326#12327#0" expanded="true" />
-            <element signature="e#11645#11646#0" expanded="true" />
-            <element signature="e#11676#11677#0" expanded="true" />
-            <element signature="e#11750#11751#0" expanded="true" />
-            <element signature="e#11783#11784#0" expanded="true" />
-            <element signature="e#13009#13010#0" expanded="true" />
-            <element signature="e#13069#13070#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1053,22 +1031,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="92" column="63" lean-forward="true" selection-start-line="92" selection-start-column="63" selection-end-line="92" selection-end-column="63" />
+        <state relative-caret-position="612">
+          <caret line="160" selection-start-line="160" selection-end-line="160" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="140" column="83" selection-start-line="140" selection-start-column="83" selection-end-line="140" selection-end-column="83" />
+        <state relative-caret-position="-1123">
+          <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="231" column="27" selection-start-line="231" selection-start-column="27" selection-end-line="231" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12267#12268#0" expanded="true" />
+            <element signature="e#12326#12327#0" expanded="true" />
+            <element signature="e#11645#11646#0" expanded="true" />
+            <element signature="e#11676#11677#0" expanded="true" />
+            <element signature="e#13009#13010#0" expanded="true" />
+            <element signature="e#13069#13070#0" expanded="true" />
           </folding>
         </state>
       </provider>

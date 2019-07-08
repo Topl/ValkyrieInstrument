@@ -229,6 +229,7 @@ public final class Valkyrie extends TruffleInstrument {
 
     @Override
     protected void onDispose(TruffleInstrument.Env env) {
+        controller.clear();
         controller = null;
     }
 

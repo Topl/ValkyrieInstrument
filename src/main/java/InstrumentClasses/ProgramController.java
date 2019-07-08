@@ -36,6 +36,8 @@ public class ProgramController implements Closeable {
     private final TruffleInstrument.Env env;
 
     ProgramController(TruffleInstrument.Env env) {
+        assetBoxesForUse = new ArrayList<>();
+        arbitBoxesForUse = new ArrayList<>();
         newAssets = new ArrayList<>();
         newArbits = new ArrayList<>();
         boxesToRemove = new ArrayList<>();
