@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4abf6de8-29d3-40fd-b0e6-77d90a39fff7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -60,14 +51,14 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="dummy" value="30" />
-          <entry key="java" value="21402" />
+          <entry key="java" value="21466" />
           <entry key="xml" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="21402" />
+          <entry key="JAVA" value="21466" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="140" />
         </counts>
@@ -81,8 +72,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="516">
-                  <caret line="174" column="84" selection-start-line="174" selection-start-column="84" selection-end-line="174" selection-end-column="84" />
+                <state relative-caret-position="-399">
+                  <caret line="152" selection-start-line="152" selection-end-line="152" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#12316#12317#0" expanded="true" />
@@ -196,8 +187,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="220">
-                  <caret line="35" column="72" lean-forward="true" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+                <state relative-caret-position="312">
+                  <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -515,7 +506,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="valkyrieinstrument" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562622283343" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562622878867" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -609,15 +600,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 27m 06s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 28m 02s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 30m 03s.xml">
-      <configuration name="ValkyrieTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ValkyrieTest - 2019.07.08 at 16h 30m 17s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
@@ -637,6 +619,15 @@
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="ValkyrieTest - 2019.07.08 at 16h 42m 24s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 44m 15s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 49m 59s.xml">
+      <configuration name="ValkyrieTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ValkyrieTest - 2019.07.08 at 16h 50m 29s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -1068,8 +1059,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="174" column="84" selection-start-line="174" selection-start-column="84" selection-end-line="174" selection-end-column="84" />
+        <state relative-caret-position="-399">
+          <caret line="152" selection-start-line="152" selection-end-line="152" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#12316#12317#0" expanded="true" />
@@ -1084,8 +1075,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="35" column="72" lean-forward="true" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+        <state relative-caret-position="312">
+          <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

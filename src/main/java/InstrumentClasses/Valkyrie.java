@@ -92,7 +92,6 @@ public final class Valkyrie extends TruffleInstrument {
                                                         String data = (String) functionArguments[5];
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + issuer + " " + to + " " + amount + " " + assetCode + " " + fee + " " + data);
 
-                                                        //Make transaction using Controller
                                                         controller.createAssets(issuer, to, amount, assetCode, fee, data);
 
                                                         //TODO return tx json like API does
@@ -123,7 +122,6 @@ public final class Valkyrie extends TruffleInstrument {
                                                         Long fee = castObjectToLong(functionArguments[5]);
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + issuer + " " + from + " " + to + " " + amount + " " + assetCode + " " + fee);
 
-                                                        //Make transaction using Controller
                                                         controller.transferAssets(issuer, from, to, amount, assetCode, fee);
 
                                                         //TODO return more meaningful response than boolean
@@ -152,7 +150,6 @@ public final class Valkyrie extends TruffleInstrument {
                                                         Long fee = castObjectToLong(functionArguments[3]);
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + from + " " + to + " " + amount + " " + fee);
 
-                                                        //Make transaction using Controller
                                                         controller.transferArbits(from, to, amount, fee);
 
                                                         //TODO return more meaningful response than boolean
@@ -164,7 +161,6 @@ public final class Valkyrie extends TruffleInstrument {
                                                         throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_transferArbits");
                                                     }
                                                 } catch (Exception e) {
-                                                    System.out.println(e);
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
                                                     throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }

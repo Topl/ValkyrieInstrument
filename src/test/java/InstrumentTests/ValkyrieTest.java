@@ -34,21 +34,22 @@ public class ValkyrieTest {
             "   var fromAddress = 'a';" +
             "   var toAddress = 'def';" +
             "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
+            //To be appended to context
             "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
             "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
             "   if (res === true)" +
             "       return res; " +
-            "   else throw res;};" +
+            "   else throw new Error(res);};" +
             "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
             "   var res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
             "   if (res === true)" +
             "       return res; " +
-            "   else throw res;};" +
+            "   else throw new Error(res);};" +
             "function Valkyrie_transferArbits(from, to, amount, fee) {" +
             "   var res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
             "   if(res === true) " +
             "       return res; " +
-            "   else throw res;}; ";
+            "   else throw new Error(res);}; ";
     @Test
     void build() {
 
