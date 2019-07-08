@@ -36,13 +36,19 @@ public class ValkyrieTest {
             "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
             "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
             "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
-            "   return res; }; " +
+            "   if (res === true)" +
+            "       return res; " +
+            "   else throw res;};" +
             "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
             "   var res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
-            "   return res; }; " +
+            "   if (res === true)" +
+            "       return res; " +
+            "   else throw res;};" +
             "function Valkyrie_transferArbits(from, to, amount, fee) {" +
             "   var res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
-            "   return res; }; ";
+            "   if(res === true) " +
+            "       return res; " +
+            "   else throw res;}; ";
     @Test
     void build() {
 

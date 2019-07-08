@@ -64,7 +64,6 @@ public final class Valkyrie extends TruffleInstrument {
 
 
 
-
 //                            Object functionObj = JSArguments.getFunctionObject(frame.getArguments());
 //                            String methodName = JSFunction.getCallTarget((DynamicObject) functionObj).toString();
                             Node node = context.getInstrumentedNode();
@@ -84,12 +83,12 @@ public final class Valkyrie extends TruffleInstrument {
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
 
                                                     if (functionArguments.length == 6) {
-                                                        //TODO correct parsing of values, specifically Longs
+                                                        //TODO test long truncation
                                                         String issuer = (String) functionArguments[0];
                                                         String to = (String) functionArguments[1];
-                                                        Long amount = new Long((Integer) functionArguments[2]);
+                                                        Long amount = castObjectToLong(functionArguments[2]);
                                                         String assetCode = (String) functionArguments[3];
-                                                        Long fee = new Long((Integer) functionArguments[4]);
+                                                        Long fee = castObjectToLong(functionArguments[4]);
                                                         String data = (String) functionArguments[5];
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + issuer + " " + to + " " + amount + " " + assetCode + " " + fee + " " + data);
 
@@ -102,12 +101,12 @@ public final class Valkyrie extends TruffleInstrument {
 
                                                     } else {
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_createAssets");
+                                                        throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_createAssets");
                                                     }
                                                 } catch (Exception e) {
                                                     System.out.println(e);
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                    throw context.createUnwind(e);
+                                                    throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
                                             }
 
@@ -116,30 +115,29 @@ public final class Valkyrie extends TruffleInstrument {
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
 
                                                     if (functionArguments.length == 6) {
-                                                        //TODO correct parsing of values, specifically Longs
                                                         String issuer = (String) functionArguments[0];
                                                         String from = (String) functionArguments[1];
                                                         String to = (String) functionArguments[2];
-                                                        Long amount = new Long((Integer) functionArguments[3]);
+                                                        Long amount = castObjectToLong(functionArguments[3]);
                                                         String assetCode = (String) functionArguments[4];
-                                                        Long fee = new Long((Integer) functionArguments[5]);
+                                                        Long fee = castObjectToLong(functionArguments[5]);
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + issuer + " " + from + " " + to + " " + amount + " " + assetCode + " " + fee);
 
                                                         //Make transaction using Controller
                                                         controller.transferAssets(issuer, from, to, amount, assetCode, fee);
 
-                                                        //TODO return tx json like API does
+                                                        //TODO return more meaningful response than boolean
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
                                                         throw context.createUnwind(true);
 
                                                     } else {
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_transferAssets");
+                                                        throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_transferAssets");
                                                     }
                                                 } catch (Exception e) {
                                                     System.out.println(e);
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                    throw context.createUnwind(e);
+                                                    throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
                                             }
 
@@ -148,34 +146,33 @@ public final class Valkyrie extends TruffleInstrument {
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
 
                                                     if (functionArguments.length == 4) {
-                                                        //TODO correct parsing of values, specifically Longs
                                                         String from = (String) functionArguments[0];
                                                         String to = (String) functionArguments[1];
-                                                        Long amount = new Long((Integer) functionArguments[2]);
-                                                        Long fee = new Long((Integer) functionArguments[3]);
+                                                        Long amount = castObjectToLong(functionArguments[2]);
+                                                        Long fee = castObjectToLong(functionArguments[3]);
                                                         System.out.println(separatedNames[0] + " " + separatedNames[1] + " " + from + " " + to + " " + amount + " " + fee);
 
                                                         //Make transaction using Controller
                                                         controller.transferArbits(from, to, amount, fee);
 
-                                                        //TODO return tx json like API does
+                                                        //TODO return more meaningful response than boolean
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
                                                         throw context.createUnwind(true);
 
                                                     } else {
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                        throw context.createUnwind("Error: Incorrect number of arguments to Valkyrie_transferArbits");
+                                                        throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_transferArbits");
                                                     }
                                                 } catch (Exception e) {
                                                     System.out.println(e);
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                    throw context.createUnwind(e);
+                                                    throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
                                             }
 
                                             default:
                                                 CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                throw context.createUnwind("Error: Method not found in Valkyrie namespace");
+                                                throw context.createUnwind("ValkyrieError: Method not found in Valkyrie namespace");
 
                                         }
                                         //Non valkyrie (ordinary) function - do nothing
@@ -236,6 +233,18 @@ public final class Valkyrie extends TruffleInstrument {
     @Override
     protected OptionDescriptors getOptionDescriptors() {
         return new ValkyrieOptionOptionDescriptors();
+    }
+
+    private static Long castObjectToLong(Object obj) {
+        if(obj instanceof Integer) {
+            return new Long((Integer)obj);
+        }
+        else if (obj instanceof Double) {
+            return ((Double)obj).longValue();
+        }
+        else {
+            throw new IllegalArgumentException("Could not cast to Long");
+        }
     }
 
 }
