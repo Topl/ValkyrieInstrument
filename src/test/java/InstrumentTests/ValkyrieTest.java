@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ValkyrieTest {
 
 
@@ -49,8 +53,8 @@ public class ValkyrieTest {
                 .build();
 
 
-        assert (Valkyrie.getController(context.getEngine()) != null);
-        assert(ProgramController.find(context.getEngine()) != null);
+        assertTrue(Valkyrie.getController(context.getEngine()) != null);
+        assertTrue(ProgramController.find(context.getEngine()) != null);
     }
 
     @Test
@@ -65,9 +69,8 @@ public class ValkyrieTest {
         ProgramController controller = ProgramController.find(context.getEngine());
         context.eval("js", testValkyrie);
         context.eval("js", "create()");
-        assert (!controller.getNewAssetInstances().isEmpty());
-
-        assert (context.getBindings("js").getMember("res").as(boolean.class));
+        assertFalse(controller.getNewAssetInstances().isEmpty());
+        assertTrue(context.getBindings("js").getMember("res").asBoolean());
     }
 
     @Test
@@ -83,12 +86,12 @@ public class ValkyrieTest {
         context.eval("js", "create()");
         context.eval("js", "transferAssets()");
 
-        assert (!controller.getNewAssetInstances().isEmpty());
-        assert (context.getBindings("js").getMember("res").as(boolean.class));
+        assertFalse(controller.getNewAssetInstances().isEmpty());
+        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
-        assert(controller.getNewAssetInstances().size() == 1);
-        assert(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
-        assert(controller.getNewAssetInstances().get(0).amount == 10);
+        assertEquals(1, controller.getNewAssetInstances().size());
+        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
+        assertEquals(10, controller.getNewAssetInstances().get(0).amount);
     }
 
     @Test
@@ -111,13 +114,15 @@ public class ValkyrieTest {
         context.eval("js", testValkyrie);
         context.eval("js", "transferAssets()");
 
-        assert(controller.getBoxesToRemove().size() == 1);
-        assert(controller.getBoxesToRemove().get(0) == inputBox);
+        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
-        assert(controller.getNewAssetInstances().size() == 2);
-        assert(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
-        assert(controller.getNewAssetInstances().get(1).publicKey.equals("a"));
-        assert(controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount == assetInstance.amount);
+        assertEquals(1, controller.getBoxesToRemove().size());
+        assertEquals(inputBox, controller.getBoxesToRemove().get(0));
+
+        assertEquals(2, controller.getNewAssetInstances().size());
+        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
+        assertTrue(controller.getNewAssetInstances().get(1).publicKey.equals("a"));
+        assertEquals(assetInstance.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
 
     }
 
@@ -141,14 +146,15 @@ public class ValkyrieTest {
         context.eval("js", testValkyrie);
         context.eval("js", "transferArbits()");
 
-        assert(controller.getBoxesToRemove().size() == 1);
-        assert(controller.getBoxesToRemove().get(0) == inputBox);
+        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
-        assert(controller.getNewArbitInstances().size() == 2);
-        assert(controller.getNewArbitInstances().get(0).publicKey.equals("def"));
-        assert(controller.getNewArbitInstances().get(1).publicKey.equals("a"));
-        assert(controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount == arbitInstance.amount);
+        assertEquals(1, controller.getBoxesToRemove().size());
+        assertEquals(inputBox, controller.getBoxesToRemove().get(0));
 
+        assertEquals(2, controller.getNewArbitInstances().size());
+        assertTrue(controller.getNewArbitInstances().get(0).publicKey.equals("def"));
+        assertTrue(controller.getNewArbitInstances().get(1).publicKey.equals("a"));
+        assertEquals(arbitInstance.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
     }
 
 }

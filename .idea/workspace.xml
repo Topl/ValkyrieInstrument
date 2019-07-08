@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4abf6de8-29d3-40fd-b0e6-77d90a39fff7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Contents.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ProgramController.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" afterDir="false" />
     </list>
@@ -38,19 +38,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="79" />
+          <entry key="class" value="96" />
           <entry key="iml" value="3" />
           <entry key="instrument" value="14" />
-          <entry key="java" value="51" />
+          <entry key="java" value="53" />
           <entry key="lst" value="1" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="79" />
+          <entry key="CLASS" value="96" />
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="49" />
+          <entry key="JAVA" value="51" />
           <entry key="PLAIN_TEXT" value="15" />
           <entry key="Scratch" value="2" />
           <entry key="XML" value="5" />
@@ -60,14 +60,14 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="dummy" value="30" />
-          <entry key="java" value="18779" />
+          <entry key="java" value="19881" />
           <entry key="xml" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="18779" />
+          <entry key="JAVA" value="19881" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="140" />
         </counts>
@@ -75,50 +75,114 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.71982443">
+    <splitter split-orientation="horizontal" split-proportion="0.47183615">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3099">
-                  <caret line="208" column="5" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
+                <state relative-caret-position="545">
+                  <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#10816#10817#0" expanded="true" />
-                    <element signature="e#10875#10876#0" expanded="true" />
+                    <element signature="e#12267#12268#0" expanded="true" />
+                    <element signature="e#12326#12327#0" expanded="true" />
                     <element signature="e#11645#11646#0" expanded="true" />
                     <element signature="e#11676#11677#0" expanded="true" />
                     <element signature="e#11750#11751#0" expanded="true" />
                     <element signature="e#11783#11784#0" expanded="true" />
-                    <element signature="e#11855#11856#0" expanded="true" />
-                    <element signature="e#11915#11916#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-300">
-                  <caret line="88" selection-start-line="88" selection-end-line="88" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1540#1541#0" expanded="true" />
-                    <element signature="e#1572#1573#0" expanded="true" />
-                    <element signature="e#1643#1644#0" expanded="true" />
-                    <element signature="e#1708#1709#0" expanded="true" />
+                    <element signature="e#13009#13010#0" expanded="true" />
+                    <element signature="e#13069#13070#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java">
+            <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSArguments.class">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+                <state relative-caret-position="421">
+                  <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#1935#1936#0" expanded="true" />
+                    <element signature="e#1970#1971#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/Builtin.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSFunction.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-11732">
+                  <caret line="117" column="29" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#7065#7066#0" expanded="true" />
+                    <element signature="e#7124#7125#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/CallTarget.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSFunctionData.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="936">
+                  <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/FrameUtil.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-379">
+                  <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/VirtualFrame.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/impl/DefaultVirtualFrame.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="131">
+                  <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/impl/DefaultCallTarget.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -127,11 +191,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="47">
-                  <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+                <state relative-caret-position="419">
+                  <caret line="140" column="83" selection-start-line="140" selection-start-column="83" selection-end-line="140" selection-end-column="83" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -140,28 +204,22 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/TokenInstance.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="318">
+                <state relative-caret-position="311">
                   <caret line="33" column="9" selection-start-line="33" selection-end-line="34" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+                <state relative-caret-position="404">
+                  <caret line="92" column="63" lean-forward="true" selection-start-line="92" selection-start-column="63" selection-end-line="92" selection-end-column="63" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -218,12 +276,12 @@
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProfilerToolFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/TokenInstance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
-        <option value="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java" />
+        <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java" />
         <option value="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" />
       </list>
     </option>
   </component>
@@ -303,7 +361,128 @@
             </path>
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="InstrumentClasses" type="462c0819:PsiDirectoryNode" />
+              <item name="TokenClasses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="InstrumentTests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="oracle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="oracle" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="oracle" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="oracle" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="js-19.0.2" type="70bed36:NamedLibraryElementNode" />
+              <item name="js-19.0.2.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="oracle" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="builtins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="truffle-api" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="truffle-api" type="70bed36:NamedLibraryElementNode" />
+              <item name="truffle-api.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="truffle-api" type="70bed36:NamedLibraryElementNode" />
+              <item name="truffle-api.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="truffle-api" type="70bed36:NamedLibraryElementNode" />
+              <item name="truffle-api.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="truffle-api" type="70bed36:NamedLibraryElementNode" />
+              <item name="truffle-api.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="truffle" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -321,7 +500,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="valkyrieinstrument" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562385704064" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562606573794" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -415,34 +594,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ValkyrieTest - 2019.07.03 at 22h 30m 58s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 38m 55s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.03 at 22h 33m 27s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 45m 15s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.03 at 22h 33m 58s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 45m 43s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.03 at 22h 40m 13s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 46m 01s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 02h 03m 36s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 46m 58s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 02h 05m 02s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 11h 47m 34s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 02h 06m 31s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 12m 35s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 05h 22m 33s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 13m 31s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 15h 01m 41s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 13m 41s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.05 at 22h 55m 38s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.08 at 12h 20m 39s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -512,76 +691,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/target/classes/Option/ValkyrieOptionOptionDescriptors.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/CompilerDirectives.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/graalvm-ce-19.0.2/Contents/Home/src.zip!/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="294" column="29" selection-start-line="294" selection-start-column="29" selection-end-line="294" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/builtins/JSONBuiltins.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="217" column="53" selection-start-line="217" selection-start-column="53" selection-end-line="217" selection-end-column="53" />
-          <folding>
-            <element signature="e#13098#13099#0" expanded="true" />
-            <element signature="e#13142#13143#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSRealm.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="99" column="13" selection-start-line="99" selection-start-column="13" selection-end-line="99" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="112" column="13" selection-start-line="112" selection-start-column="13" selection-end-line="112" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSClass.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="86" column="24" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSBuiltinObject.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1492">
-          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/instrumentation/ExecutionEventNodeFactory.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/nodes/Node.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/instrumentation/EventContext.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -610,24 +719,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSFunction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6072">
-          <caret line="68" column="31" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSRuntime.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/Frame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -642,13 +737,6 @@
             <element signature="e#2352#2353#0" expanded="true" />
             <element signature="e#2415#2416#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSArguments.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -692,13 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
           <caret line="293" selection-start-line="293" selection-end-line="293" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/VirtualFrame.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -818,31 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3099">
-          <caret line="208" column="5" selection-start-line="208" selection-start-column="5" selection-end-line="208" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10816#10817#0" expanded="true" />
-            <element signature="e#10875#10876#0" expanded="true" />
-            <element signature="e#11645#11646#0" expanded="true" />
-            <element signature="e#11676#11677#0" expanded="true" />
-            <element signature="e#11750#11751#0" expanded="true" />
-            <element signature="e#11783#11784#0" expanded="true" />
-            <element signature="e#11855#11856#0" expanded="true" />
-            <element signature="e#11915#11916#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -850,40 +906,169 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
+    <entry file="file://$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="47">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="-903">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#5770#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
+        <state relative-caret-position="311">
           <caret line="33" column="9" selection-start-line="33" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/MaterializedFrame.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="46" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/Frame.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/FrameInstance.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/FrameDescriptor.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1847">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/FrameUtil.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-379">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/frame/VirtualFrame.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/impl/DefaultVirtualFrame.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/impl/DefaultCallTarget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/Builtin.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSFunctionData.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/JSArguments.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+          <folding>
+            <element signature="e#1935#1936#0" expanded="true" />
+            <element signature="e#1970#1971#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/JSFunction.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11732">
+          <caret line="117" column="29" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+          <folding>
+            <element signature="e#7065#7066#0" expanded="true" />
+            <element signature="e#7124#7125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../graal/truffle/mxbuild/dists/jdk1.8/truffle-api.jar!/com/oracle/truffle/api/CallTarget.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12267#12268#0" expanded="true" />
+            <element signature="e#12326#12327#0" expanded="true" />
+            <element signature="e#11645#11646#0" expanded="true" />
+            <element signature="e#11676#11677#0" expanded="true" />
+            <element signature="e#11750#11751#0" expanded="true" />
+            <element signature="e#11783#11784#0" expanded="true" />
+            <element signature="e#13009#13010#0" expanded="true" />
+            <element signature="e#13069#13070#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/ArbitInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/TokenClasses/AssetInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        <state relative-caret-position="105">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-300">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        <state relative-caret-position="404">
+          <caret line="92" column="63" lean-forward="true" selection-start-line="92" selection-start-column="63" selection-end-line="92" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1540#1541#0" expanded="true" />
-            <element signature="e#1572#1573#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="140" column="83" selection-start-line="140" selection-start-column="83" selection-end-line="140" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

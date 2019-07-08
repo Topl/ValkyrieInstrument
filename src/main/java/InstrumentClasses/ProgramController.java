@@ -75,22 +75,27 @@ public class ProgramController implements Closeable {
 
     public void setArbitBoxesForUse(ArrayList<ArbitInstance> arbitInstances) {
         for(ArbitInstance instance: arbitInstances) {
-            assert(instance.boxId != null);
+            if(instance.boxId == null) {
+                throw new IllegalArgumentException("Provided arbit box does not have boxId");
+            }
         }
         this.arbitBoxesForUse = (ArrayList<ArbitInstance>)arbitInstances.clone();
     }
 
     public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
         for(AssetInstance instance: assetInstances) {
-            assert(instance.boxId != null);
-        }
+            if(instance.boxId == null) {
+                throw new IllegalArgumentException("Provided asset box does not have boxId");
+            }        }
         this.assetBoxesForUse = (ArrayList<AssetInstance>)assetInstances.clone();
     }
 
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
         for(TokenInstance instance: tokenInstances) {
-            assert(instance.boxId != null);
-            if(instance.instanceType.equals("Asset")) {
+            if(instance.boxId == null) {
+                throw new IllegalArgumentException("Provided token box does not have boxId");
+            }
+            else if(instance.instanceType.equals("Asset")) {
                 this.assetBoxesForUse.add((AssetInstance)instance);
             }
             else if(instance.instanceType.equals("Arbit")) {
