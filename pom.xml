@@ -14,6 +14,18 @@
     </properties>
     <!-- https://mvnrepository.com/artifact/org.graalvm.sdk/graal-sdk -->
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.graalvm.truffle/truffle-api -->
+        <dependency>
+            <groupId>org.graalvm.truffle</groupId>
+            <artifactId>truffle-api</artifactId>
+            <version>19.0.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.graalvm.truffle/truffle-dsl-processor -->
+        <dependency>
+            <groupId>org.graalvm.truffle</groupId>
+            <artifactId>truffle-dsl-processor</artifactId>
+            <version>19.0.2</version>
+        </dependency>
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
@@ -31,12 +43,6 @@
             <artifactId>js</artifactId>
             <version>19.0.2</version>
         </dependency>
-         <!--https://mvnrepository.com/artifact/org.codehaus.mojo/build-helper-maven-plugin-->
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>3.0.0</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -44,8 +50,6 @@
             <version>5.5.0</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -53,11 +57,6 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.example.Main</mainClass>
-                        </manifest>
-                    </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -71,27 +70,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>target/generated-sources/annotations/InstrumentClasses/</source>
-                                <!--<source>target/classes/InstrumentClasses/</source>-->
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
 
 </project>

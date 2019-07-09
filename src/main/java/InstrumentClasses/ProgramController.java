@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 public class ProgramController implements Closeable {
 
+    public boolean didExecuteCorrectly;
+
     public Context context;
 
     //Bifrost boxes from wallet should be cast into instances of local token classes
@@ -40,6 +42,7 @@ public class ProgramController implements Closeable {
         newArbits = new ArrayList<>();
         boxesToRemove = new ArrayList<>();
         feesCollected = new Long(0);
+        didExecuteCorrectly = true;
         this.env = env;
     }
 
@@ -105,7 +108,6 @@ public class ProgramController implements Closeable {
         this.polyBoxesForUse = (ArrayList<PolyInstance>)polyInstances.clone();
     }
 
-    //TODO untested
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
         for(TokenInstance instance: tokenInstances) {
             if(instance.boxId == null) {
@@ -157,12 +159,24 @@ public class ProgramController implements Closeable {
     }
 
 
+    /*
+    TODO
+    Unhandled edge cases:
+    - Public key to send to does not exist
+    -
+     */
 
     /*
     Methods to be used by instrument to update values for encountered Valkyrie functions
     */
     protected void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
         //TODO check enough fees
+        if(amount < 0) {
+            throw new IllegalArgumentException("Negative amount for asset creation");
+        }
+        if(fee < 0) {
+            throw new IllegalArgumentException("Negative fee for asset creation");
+        }
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
         //TODO fee collection
 //        feesCollected += fee;
@@ -171,6 +185,12 @@ public class ProgramController implements Closeable {
     protected void transferAssets(String issuer, String from, String to, Long amount, String assetCode, Long fee) {
         //TODO check enough fees
         //TODO Look into writing rollback function for greater efficiency in preventing partial state updates
+        if(amount < 0) {
+            throw new IllegalArgumentException("Negative amount for asset transfer");
+        }
+        if(fee < 0) {
+            throw new IllegalArgumentException("Negative fee for asset transfer");
+        }
         if(!checkEnoughAssetsAvailableForTransfer(from, amount, fee, assetCode, issuer)){
             throw new IllegalStateException("Not enough funds available for asset transfer");
         }
@@ -193,9 +213,7 @@ public class ProgramController implements Closeable {
             }
             //If assetBox is not what we're looking for, do nothing
         }
-
         //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller to fund transfer
-
         if(amountCollected < amount && assetBoxesForUse != null) {
             for(AssetInstance instance: assetBoxesForUse) {
                 if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
@@ -225,6 +243,12 @@ public class ProgramController implements Closeable {
     protected void transferArbits(String from, String to, Long amount, Long fee) {
         //TODO check enough fees
         //TODO Look into writing rollback function for greater efficiency in preventing partial state updates
+        if(amount < 0) {
+            throw new IllegalArgumentException("Negative amount for arbit transfer");
+        }
+        if(fee < 0) {
+            throw new IllegalArgumentException("Negative fee for arbit transfer");
+        }
         if(!checkEnoughArbitsAvailableForTransfer(from, amount, fee)){
             throw new IllegalStateException("Not enough funds available for arbit transfer");
         }
@@ -247,9 +271,7 @@ public class ProgramController implements Closeable {
             }
             //If arbitBox is not what we're looking for, do nothing
         }
-
         //If total transfer amount not reached from newly created arbits, use boxes provided as arguments to controller to fund transfer
-
         if(amountCollected < amount && arbitBoxesForUse != null) {
             for(ArbitInstance instance: arbitBoxesForUse) {
                 if (instance.publicKey.equals(from)) {
@@ -287,7 +309,6 @@ public class ProgramController implements Closeable {
                 }
             }
         }
-
         if(assetBoxesForUse != null) {
             for (AssetInstance instance : assetBoxesForUse) {
                 if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
@@ -312,7 +333,6 @@ public class ProgramController implements Closeable {
                 }
             }
         }
-
         if(arbitBoxesForUse != null) {
             for (ArbitInstance instance : arbitBoxesForUse) {
                 if (instance.publicKey.equals(from)) {

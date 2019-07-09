@@ -63,7 +63,6 @@ public final class Valkyrie extends TruffleInstrument {
 //                            System.out.println(((DynamicObject) arg2).get("functionData"));
 
 
-
 //                            Object functionObj = JSArguments.getFunctionObject(frame.getArguments());
 //                            String methodName = JSFunction.getCallTarget((DynamicObject) functionObj).toString();
                             Node node = context.getInstrumentedNode();
@@ -72,12 +71,9 @@ public final class Valkyrie extends TruffleInstrument {
 
                             if (methodName.contains(".")) {
                                 String separatedNames[] = methodName.split("\\.");
-//                            if (methodName.contains("_")) {
-//                                String separatedNames[] = methodName.split("_");
-
                                 switch (separatedNames[0]) {
                                     case "ValkyrieReserved":
-                                        switch(separatedNames[1]) {
+                                        switch (separatedNames[1]) {
                                             case "createAssets": {
                                                 try {
                                                     Object[] functionArguments = JSArguments.extractUserArguments(frame.getArguments());
@@ -99,11 +95,12 @@ public final class Valkyrie extends TruffleInstrument {
                                                         throw context.createUnwind(true);
 
                                                     } else {
+                                                        controller.didExecuteCorrectly = false;
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
                                                         throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_createAssets");
                                                     }
                                                 } catch (Exception e) {
-                                                    System.out.println(e);
+                                                    controller.didExecuteCorrectly = false;
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
                                                     throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
@@ -129,11 +126,12 @@ public final class Valkyrie extends TruffleInstrument {
                                                         throw context.createUnwind(true);
 
                                                     } else {
+                                                        controller.didExecuteCorrectly = false;
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
                                                         throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_transferAssets");
                                                     }
                                                 } catch (Exception e) {
-                                                    System.out.println(e);
+                                                    controller.didExecuteCorrectly = false;
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
                                                     throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
@@ -157,16 +155,19 @@ public final class Valkyrie extends TruffleInstrument {
                                                         throw context.createUnwind(true);
 
                                                     } else {
+                                                        controller.didExecuteCorrectly = false;
                                                         CompilerDirectives.transferToInterpreterAndInvalidate();
                                                         throw context.createUnwind("ValkyrieError: Incorrect number of arguments to Valkyrie_transferArbits");
                                                     }
                                                 } catch (Exception e) {
+                                                    controller.didExecuteCorrectly = false;
                                                     CompilerDirectives.transferToInterpreterAndInvalidate();
                                                     throw context.createUnwind("ValkyrieError: " + e.getMessage());
                                                 }
                                             }
 
                                             default:
+                                                controller.didExecuteCorrectly = false;
                                                 CompilerDirectives.transferToInterpreterAndInvalidate();
                                                 throw context.createUnwind("ValkyrieError: Method not found in Valkyrie namespace");
 
@@ -177,7 +178,7 @@ public final class Valkyrie extends TruffleInstrument {
                             }
                         }
                         catch (Exception e) {
-                            System.out.println(e);
+                            //do nothing
                         }
                     }
 
