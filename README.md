@@ -8,5 +8,5 @@
 - Run mvn test-compile to compile test classes
 - Run mvn assembly:single to package project with dependencies into jar
 
-Drop jar into Graal's Contents/Home/jre/lib/boot folder (add to boot classpath)
-This enables instrument registration and access by the option arguments when building a context, and service class loading and initialization within the instrument itself.
+Finally, drop jar into Graal's Contents/Home/jre/lib/boot folder (add to boot classpath).
+This enables instrument registration and access by the option arguments when building a context, and service class loading and initialization within the instrument itself. Run the test suite to ensure the jar is installed correctly and being discovered.
