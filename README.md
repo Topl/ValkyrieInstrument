@@ -1,6 +1,6 @@
 # ValkyrieInstrument
 
-##Build process (Using Graal version > 19.0.2 as project SDK)
+## Build process (Using Graal version > 19.0.2 as project SDK)
 - Download maven command line tools
 - Clone the repository
 - Run mvn clean to remove all target/ folders and files
