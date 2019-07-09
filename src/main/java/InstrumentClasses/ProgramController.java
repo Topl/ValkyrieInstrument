@@ -4,6 +4,7 @@ import InstrumentClasses.TokenClasses.ArbitInstance;
 import InstrumentClasses.TokenClasses.AssetInstance;
 import InstrumentClasses.TokenClasses.PolyInstance;
 import InstrumentClasses.TokenClasses.TokenInstance;
+//import com.oracle.truffle.api.ArrayUtils;
 import com.oracle.truffle.api.instrumentation.Instrumenter;
 import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
@@ -11,7 +12,12 @@ import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Engine;
 
 import java.io.Closeable;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 
 
 public class ProgramController implements Closeable {
@@ -74,55 +80,37 @@ public class ProgramController implements Closeable {
 
     public void setArbitBoxesForUse(ArrayList<ArbitInstance> arbitInstances) {
         for(ArbitInstance instance: arbitInstances) {
-            if(instance.boxId == null) {
-                throw new IllegalArgumentException("Provided arbit box does not have boxId");
-            }
-            else if(instance.amount < 0) {
-                throw new IllegalArgumentException("Provided arbit box has negative amount");
-            }
+            ArbitInstance.validateWithBoxId(instance);
         }
         this.arbitBoxesForUse = (ArrayList<ArbitInstance>)arbitInstances.clone();
     }
 
     public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
         for(AssetInstance instance: assetInstances) {
-            if(instance.boxId == null) {
-                throw new IllegalArgumentException("Provided asset box does not have boxId");
-            }
-            else if(instance.amount < 0) {
-                throw new IllegalArgumentException("Provided asset box has negative amount");
-            }
+            AssetInstance.validateWithBoxId(instance);
         }
         this.assetBoxesForUse = (ArrayList<AssetInstance>)assetInstances.clone();
     }
 
     public void setPolyBoxesForUse(ArrayList<PolyInstance> polyInstances) {
         for(PolyInstance instance: polyInstances) {
-            if(instance.boxId == null) {
-                throw new IllegalArgumentException("Provided poly box does not have boxId");
-            }
-            else if(instance.amount < 0) {
-                throw new IllegalArgumentException("Provided poly box has negative amount");
-            }
+            PolyInstance.validateWithBoxId(instance);
         }
         this.polyBoxesForUse = (ArrayList<PolyInstance>)polyInstances.clone();
     }
 
     public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
         for(TokenInstance instance: tokenInstances) {
-            if(instance.boxId == null) {
-                throw new IllegalArgumentException("Provided token box does not have boxId");
-            }
-            else if(instance.amount < 0) {
-                throw new IllegalArgumentException("Provided token box has negative amount");
-            }
-            else if(instance.instanceType.equals("Asset")) {
+            if(instance.instanceType.equals("Asset")) {
+                AssetInstance.validateWithBoxId((AssetInstance)instance);
                 this.assetBoxesForUse.add((AssetInstance)instance);
             }
             else if(instance.instanceType.equals("Arbit")) {
+                ArbitInstance.validateWithBoxId((ArbitInstance)instance);
                 this.arbitBoxesForUse.add((ArbitInstance)instance);
             }
             else if(instance.instanceType.equals("Poly")) {
+                PolyInstance.validateWithBoxId((PolyInstance)instance);
                 this.polyBoxesForUse.add((PolyInstance)instance);
             }
         }
@@ -159,12 +147,6 @@ public class ProgramController implements Closeable {
     }
 
 
-    /*
-    TODO
-    Unhandled edge cases:
-    - Public key to send to does not exist
-    -
-     */
 
     /*
     Methods to be used by instrument to update values for encountered Valkyrie functions
@@ -176,6 +158,9 @@ public class ProgramController implements Closeable {
         }
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset creation");
+        }
+        if(base58Decode(issuer).length != keyLength || base58Decode(to).length != keyLength) {
+            throw new IllegalArgumentException("Invalid public key provided in asset creation");
         }
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
         //TODO fee collection
@@ -190,6 +175,9 @@ public class ProgramController implements Closeable {
         }
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset transfer");
+        }
+        if(base58Decode(issuer).length != keyLength || base58Decode(from).length != keyLength || base58Decode(to).length != keyLength) {
+            throw new IllegalArgumentException("Invalid public key provided in asset transfer");
         }
         if(!checkEnoughAssetsAvailableForTransfer(from, amount, fee, assetCode, issuer)){
             throw new IllegalStateException("Not enough funds available for asset transfer");
@@ -235,6 +223,7 @@ public class ProgramController implements Closeable {
         //TODO fee collection
 //        feesCollected += fee;
         if(amountCollected != amount + change) {
+            didExecuteCorrectly = false;
             throw new ArithmeticException("Boxes do not sum to correct values");
         }
 
@@ -248,6 +237,9 @@ public class ProgramController implements Closeable {
         }
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for arbit transfer");
+        }
+        if(base58Decode(to).length != keyLength || base58Decode(from).length != keyLength) {
+            throw new IllegalArgumentException("Invalid public key provided in arbit transfer");
         }
         if(!checkEnoughArbitsAvailableForTransfer(from, amount, fee)){
             throw new IllegalStateException("Not enough funds available for arbit transfer");
@@ -293,6 +285,7 @@ public class ProgramController implements Closeable {
         //TODO fee collection
 //        feesCollected += fee;
         if(amountCollected != amount + change) {
+            didExecuteCorrectly = false;
             throw new ArithmeticException("Boxes do not sum to correct values");
         }
     }
@@ -344,5 +337,54 @@ public class ProgramController implements Closeable {
             }
         }
         return false;
+    }
+
+    /*
+     * Base 58 decoding utility method - taken from Base58codec: https://github.com/chrylis/base58-codec
+     */
+
+    public static final int keyLength = 32;
+
+    public static final BigInteger BASE = BigInteger.valueOf(58);
+
+    public static final char ALPHABET[] = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ".toCharArray();
+
+    public static byte[] base58Decode(final String source) {
+        BigInteger value = BigInteger.ZERO;
+
+        Iterator<Character> it = stringIterator(source);
+        while (it.hasNext()) {
+            value = value.add(BigInteger.valueOf(Arrays.asList(ALPHABET).indexOf(it.next())));
+            if (it.hasNext())
+                value = value.multiply(BASE);
+        }
+        return value.toByteArray();
+    }
+
+    public static Iterator<Character> stringIterator(final String string) {
+        // Ensure the error is found as soon as possible.
+        if (string == null)
+            throw new NullPointerException();
+
+        return new Iterator<Character>() {
+            private int index = 0;
+
+            public boolean hasNext() {
+                return index < string.length();
+            }
+
+            public Character next() {
+                /*
+                 * Throw NoSuchElementException as defined by the Iterator contract, not IndexOutOfBoundsException.
+                 */
+                if (!hasNext())
+                    throw new NoSuchElementException();
+                return string.charAt(index++);
+            }
+
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 }

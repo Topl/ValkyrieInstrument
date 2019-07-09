@@ -1,5 +1,7 @@
 package InstrumentClasses.TokenClasses;
 
+import InstrumentClasses.ProgramController;
+
 public class AssetInstance extends TokenInstance{
     public String issuer;
     public String assetCode;
@@ -26,5 +28,17 @@ public class AssetInstance extends TokenInstance{
 
     public String getInstanceType() {
         return super.getInstanceType();
+    }
+
+    public static void validateWithBoxId(AssetInstance instance) {
+        if(instance.boxId == null) {
+            throw new IllegalArgumentException("Provided asset box does not have boxId");
+        }
+        else if(instance.amount < 0) {
+            throw new IllegalArgumentException("Provided asset box has negative amount");
+        }
+        else if(ProgramController.base58Decode(instance.issuer).length != ProgramController.keyLength || ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
+            throw new IllegalArgumentException("Provided asset box has an invalid public key");
+        }
     }
 }

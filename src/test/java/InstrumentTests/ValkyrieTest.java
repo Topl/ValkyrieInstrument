@@ -15,28 +15,42 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ValkyrieTest {
 
-
-    String test =
-            "function add(){a = addResult(); function addResult(){return 2 + 2}}";
-
-    String testValkyrie =
-            "issuer = 'b';" +
-            "issuer = 'bc';" +
+    String publicKey1 = "6sYyiTguyQ455w2dGEaNbrwkAWAEYV1Zk6FtZMknWDKQ";
+    String publicKey2 = "A9vRt6hw7w4c7b4qEkQHYptpqBGpKM5MGoXyrkGCbrfb";
+    String publicKey3 = "F6ABtYMsJABDLH2aj7XVPwQr5mH7ycsCE4QGQrLeB3xU";
+    //Helper
+    private String createTestScriptWithParams(Long createAmount, Long createFee, Long transferAmount, Long transferFee) {
+        return String.format(
+            "issuer = '%1$s';" +
             "function create() { " +
-            "   var toAddress = 'a';" +
-            "   res = Valkyrie_createAssets(issuer, toAddress, 10, 'testAssets', 0, ''); " +
+            "   var toAddress = '%2$s';" +
+            "   try {"+
+            "       var res = Valkyrie_createAssets(issuer, toAddress, "+createAmount+", 'testAssets', "+createFee+", ''); " +
+            "   } catch (err) {}" +
             "   a = 2 + 2; }" +
             "function transferAssets() {" +
-            "   var fromAddress = 'a';" +
-            "   var toAddress = 'def';" +
-            "   res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, 10, 'testAssets', 0);}" +
+            "   var fromAddress = '%2$s';" +
+            "   var toAddress = '%3$s';" +
+            //"   try {"+
+            "       var res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, "+transferAmount+", 'testAssets', "+transferFee+");}" +
+            //"   } catch (err) {}}" +
             "function transferArbits() {" +
-            "   var fromAddress = 'a';" +
-            "   var toAddress = 'def';" +
-            "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
+            "   var fromAddress = '%2$s';" +
+            "   var toAddress = '%3$s';" +
+            "   var res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
+            "function createAndTransferAssets() {" +
+            "   var toAddress1 = '%2$s';" +
+            "   try {"+
+            "       var res1 = Valkyrie_createAssets(issuer, toAddress1, "+createAmount+", 'testAssets', "+createFee+", ''); " +
+            "   } catch (err) {}" +
+            "   var fromAddress = '%2$s';" +
+            "   var toAddress2 = '%3$s';" +
+            //"   try {"+
+            "       var res2 = Valkyrie_transferAssets(issuer, fromAddress, toAddress2, "+transferAmount+", 'testAssets', "+transferFee+");}" +
+            //"   } catch (err) {}}" +
             //To be appended to context
             "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
-            "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
+            "   var res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
             "   if (res === true)" +
             "       return res; " +
             "   else throw new Error(res);};" +
@@ -49,7 +63,11 @@ public class ValkyrieTest {
             "   var res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
             "   if(res === true) " +
             "       return res; " +
-            "   else throw new Error(res);}; ";
+            "   else throw new Error(res);}; ", publicKey1, publicKey2, publicKey3);
+    }
+
+    private String testValkyrieScript = createTestScriptWithParams(new Long(10), new Long(0), new Long(10), new Long(0));
+
     @Test
     void build() {
 
@@ -73,10 +91,10 @@ public class ValkyrieTest {
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
-        context.eval("js", testValkyrie);
+        context.eval("js", testValkyrieScript);
         context.eval("js", "create()");
         assertFalse(controller.getNewAssetInstances().isEmpty());
-        assertTrue(context.getBindings("js").getMember("res").asBoolean());
+//        assertTrue(context.getBindings("js").getMember("res").asBoolean());
         assertTrue(controller.didExecuteCorrectly);
         context.close();
     }
@@ -89,15 +107,15 @@ public class ValkyrieTest {
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
-        context.eval("js", testValkyrie);
-        context.eval("js", "create()");
-        context.eval("js", "transferAssets()");
+        context.eval("js", testValkyrieScript);
+        context.eval("js", "createAndTransferAssets()");
+//        context.eval("js", "transferAssets()");
 
         assertFalse(controller.getNewAssetInstances().isEmpty());
-        assertTrue(context.getBindings("js").getMember("res").asBoolean());
+//        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
         assertEquals(1, controller.getNewAssetInstances().size());
-        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
+        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals(publicKey3));
         assertEquals(10, controller.getNewAssetInstances().get(0).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -114,22 +132,22 @@ public class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        AssetInstance assetInstance = new AssetInstance("a", "bc", "testAssets", new Long(12), "", inputBox);
+        AssetInstance assetInstance = new AssetInstance(publicKey2, publicKey1, "testAssets", new Long(12), "", inputBox);
         ArrayList<AssetInstance> assetBoxesForUse = new ArrayList();
         assetBoxesForUse.add(assetInstance);
         controller.setAssetBoxesForUse(assetBoxesForUse);
 
-        context.eval("js", testValkyrie);
+        context.eval("js", testValkyrieScript);
         context.eval("js", "transferAssets()");
 
-        assertTrue(context.getBindings("js").getMember("res").asBoolean());
+//        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
         assertEquals(1, controller.getBoxesToRemove().size());
         assertEquals(inputBox, controller.getBoxesToRemove().get(0));
 
         assertEquals(2, controller.getNewAssetInstances().size());
-        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals("def"));
-        assertTrue(controller.getNewAssetInstances().get(1).publicKey.equals("a"));
+        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals(publicKey3));
+        assertTrue(controller.getNewAssetInstances().get(1).publicKey.equals(publicKey2));
         assertEquals(assetInstance.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -146,22 +164,26 @@ public class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        ArbitInstance arbitInstance = new ArbitInstance("a", new Long(12), inputBox);
-        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList();
-        arbitBoxesForUse.add(arbitInstance);
-        controller.setTokenBoxesForUse(arbitBoxesForUse);
+        ArbitInstance arbitInstance = new ArbitInstance(publicKey2, new Long(12), inputBox);
+//        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList();
+//        arbitBoxesForUse.add(arbitInstance);
+//        controller.setTokenBoxesForUse(arbitBoxesForUse);
 
-        context.eval("js", testValkyrie);
+        ArrayList<ArbitInstance> arbitBoxesForUse = new ArrayList();
+        arbitBoxesForUse.add(arbitInstance);
+        controller.setArbitBoxesForUse(arbitBoxesForUse);
+
+        context.eval("js", testValkyrieScript);
         context.eval("js", "transferArbits()");
 
-        assertTrue(context.getBindings("js").getMember("res").asBoolean());
+//        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
         assertEquals(1, controller.getBoxesToRemove().size());
         assertEquals(inputBox, controller.getBoxesToRemove().get(0));
 
         assertEquals(2, controller.getNewArbitInstances().size());
-        assertTrue(controller.getNewArbitInstances().get(0).publicKey.equals("def"));
-        assertTrue(controller.getNewArbitInstances().get(1).publicKey.equals("a"));
+        assertTrue(controller.getNewArbitInstances().get(0).publicKey.equals(publicKey3));
+        assertTrue(controller.getNewArbitInstances().get(1).publicKey.equals(publicKey2));
         assertEquals(arbitInstance.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -227,56 +249,6 @@ public class ValkyrieTest {
             assertFalse(controller.didExecuteCorrectly);
             context.close();
         }
-    }
-
-
-    //Helper
-    private String createTestScriptWithParams(Long createAmount, Long createFee, Long transferAmount, Long transferFee) {
-        return
-            "issuer = 'b';" +
-            "issuer = 'bc';" +
-            "function create() { " +
-            "   var toAddress = 'a';" +
-            "   try {"+
-            "       res = Valkyrie_createAssets(issuer, toAddress, "+createAmount+", 'testAssets', "+createFee+", ''); " +
-            "   } catch (err) {}" +
-            "   a = 2 + 2; }" +
-            "function transferAssets() {" +
-            "   var fromAddress = 'a';" +
-            "   var toAddress = 'def';" +
-            "   try {"+
-            "       res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, "+transferAmount+", 'testAssets', "+transferFee+");" +
-            "   } catch (err) {}}" +
-            "function transferArbits() {" +
-            "   var fromAddress = 'a';" +
-            "   var toAddress = 'def';" +
-            "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
-            "function createAndTransferAssets() {" +
-            "   var toAddress1 = 'a';" +
-            "   try {"+
-            "       var res1 = Valkyrie_createAssets(issuer, toAddress1, "+createAmount+", 'testAssets', "+createFee+", ''); " +
-            "   } catch (err) {}" +
-            "   var fromAddress = 'a';" +
-            "   var toAddress2 = 'def';" +
-            //"   try {"+
-            "       var res2 = Valkyrie_transferAssets(issuer, fromAddress, toAddress2, "+transferAmount+", 'testAssets', "+transferFee+");}" +
-            //"   } catch (err) {}}" +
-            //To be appended to context
-            "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
-            "   var res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
-            "   if (res === true)" +
-            "       return res; " +
-            "   else throw new Error(res);};" +
-            "function Valkyrie_transferAssets(issuer, from, to, amount, assetCode, fee) {" +
-            "   var res = ValkyrieReserved.transferAssets(issuer, from, to , amount, assetCode, fee);" +
-            "   if (res === true)" +
-            "       return res; " +
-            "   else throw new Error(res);};" +
-            "function Valkyrie_transferArbits(from, to, amount, fee) {" +
-            "   var res = ValkyrieReserved.transferArbits(from, to , amount, fee);" +
-            "   if(res === true) " +
-            "       return res; " +
-            "   else throw new Error(res);}; ";
     }
 
 }

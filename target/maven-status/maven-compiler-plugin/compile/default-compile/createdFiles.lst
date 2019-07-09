@@ -5,6 +5,7 @@ InstrumentClasses/TokenClasses/AssetInstance.class
 InstrumentClasses/ValkyrieOption.class
 InstrumentClasses/TokenClasses/ArbitInstance.class
 InstrumentClasses/Valkyrie$1$1.class
+InstrumentClasses/ProgramController$2.class
 META-INF/truffle/instrument
 InstrumentClasses/Valkyrie$1.class
 InstrumentClasses/TokenClasses/TokenInstance.class

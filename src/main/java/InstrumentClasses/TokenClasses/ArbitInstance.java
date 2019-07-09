@@ -1,5 +1,7 @@
 package InstrumentClasses.TokenClasses;
 
+import InstrumentClasses.ProgramController;
+
 public class ArbitInstance extends TokenInstance{
 
     public ArbitInstance(String publicKey, Long amount) {
@@ -17,5 +19,17 @@ public class ArbitInstance extends TokenInstance{
 
     public String getInstanceType() {
         return super.getInstanceType();
+    }
+
+    public static void validateWithBoxId(ArbitInstance instance) {
+        if(instance.boxId == null) {
+            throw new IllegalArgumentException("Provided arbit box does not have boxId");
+        }
+        else if(instance.amount < 0) {
+            throw new IllegalArgumentException("Provided arbit box has negative amount");
+        }
+        else if(ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
+            throw new IllegalArgumentException("Provided arbit box has an invalid public key");
+        }
     }
 }
