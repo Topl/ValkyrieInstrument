@@ -1,5 +1,7 @@
 # ValkyrieInstrument
 
+A language instrument developed for Graal Javascript execution using the Truffle API. The instrument breaks program execution when it encounts certain reserved namespace functions and injects the results from the service controller back into the program before continuing execution of the Javascript.
+
 ## Build process (Using Graal version > 19.0.2 as project SDK)
 - Download maven command line tools
 - Clone the repository
