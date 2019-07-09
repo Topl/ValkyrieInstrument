@@ -180,7 +180,6 @@ public class ValkyrieTest {
         ProgramController controller = ProgramController.find(context.getEngine());
         context.eval("js", createTestScriptWithParams(amount, fee, new Long(0) , new Long(0)));
         context.eval("js", "create()");
-        assertEquals("ValkyrieError: Negative amount for asset creation", context.getBindings("js").getMember("res").asString());
         assertFalse(controller.didExecuteCorrectly);
         context.close();
     }
@@ -198,13 +197,12 @@ public class ValkyrieTest {
         ProgramController controller = ProgramController.find(context.getEngine());
         context.eval("js", createTestScriptWithParams(amount, fee, new Long(0) , new Long(0)));
         context.eval("js", "create()");
-        context.eval("js", "create()");
-        assertEquals("ValkyrieError: Negative fee for asset creation", context.getBindings("js").getMember("res").asString());
         assertTrue(controller.getNewAssetInstances().isEmpty());
         assertFalse(controller.didExecuteCorrectly);
         context.close();
     }
 
+    //Should wrap context evals in try blocks for when developers dont handle Valkyrie exceptions
     @Test
     void invalidTransferShouldNotMaintainCreate() {
         Long createAmount = new Long(10);
@@ -220,10 +218,15 @@ public class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
         context.eval("js", createTestScriptWithParams(createAmount, createFee, transferAmount, transferFee));
-        context.eval("js", "createAndTransferAssets()");
-        assertFalse(controller.didExecuteCorrectly);
-        context.close();
-
+        try {
+            context.eval("js", "createAndTransferAssets()");
+        }
+        catch (Exception e) {
+        }
+        finally {
+            assertFalse(controller.didExecuteCorrectly);
+            context.close();
+        }
     }
 
 
@@ -249,18 +252,18 @@ public class ValkyrieTest {
             "   var toAddress = 'def';" +
             "   res = Valkyrie_transferArbits(fromAddress, toAddress, 10, 0);}" +
             "function createAndTransferAssets() {" +
-            "   var toAddress = 'a';" +
+            "   var toAddress1 = 'a';" +
             "   try {"+
-            "       res = Valkyrie_createAssets(issuer, toAddress, "+createAmount+", 'testAssets', "+createFee+", ''); " +
+            "       var res1 = Valkyrie_createAssets(issuer, toAddress1, "+createAmount+", 'testAssets', "+createFee+", ''); " +
             "   } catch (err) {}" +
             "   var fromAddress = 'a';" +
-            "   var toAddress = 'def';" +
-            "   try {"+
-            "       res = Valkyrie_transferAssets(issuer, fromAddress, toAddress, "+transferAmount+", 'testAssets', "+transferFee+");" +
-            "   } catch (err) {}}" +
+            "   var toAddress2 = 'def';" +
+            //"   try {"+
+            "       var res2 = Valkyrie_transferAssets(issuer, fromAddress, toAddress2, "+transferAmount+", 'testAssets', "+transferFee+");}" +
+            //"   } catch (err) {}}" +
             //To be appended to context
             "function Valkyrie_createAssets(issuer, to, amount, assetCode, fee, data) {" +
-            "   res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
+            "   var res = ValkyrieReserved.createAssets(issuer, to , amount, assetCode, fee, data);" +
             "   if (res === true)" +
             "       return res; " +
             "   else throw new Error(res);};" +

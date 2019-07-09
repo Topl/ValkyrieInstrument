@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4abf6de8-29d3-40fd-b0e6-77d90a39fff7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/build_helper_maven_plugin_3_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/graal_sdk_19_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/js_19_0_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/truffle_api.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/ValkyrieInstrument-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/ProgramController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/InstrumentClasses/Valkyrie.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/truffle/instrument" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,7 +32,7 @@
         <counts>
           <entry key="class" value="98" />
           <entry key="iml" value="3" />
-          <entry key="instrument" value="14" />
+          <entry key="instrument" value="15" />
           <entry key="java" value="56" />
           <entry key="lst" value="1" />
           <entry key="xml" value="5" />
@@ -56,7 +43,7 @@
           <entry key="CLASS" value="98" />
           <entry key="IDEA_MODULE" value="3" />
           <entry key="JAVA" value="54" />
-          <entry key="PLAIN_TEXT" value="15" />
+          <entry key="PLAIN_TEXT" value="16" />
           <entry key="Scratch" value="2" />
           <entry key="XML" value="5" />
         </counts>
@@ -65,14 +52,14 @@
         <counts>
           <entry key="class" value="5" />
           <entry key="dummy" value="30" />
-          <entry key="java" value="23612" />
+          <entry key="java" value="23879" />
           <entry key="xml" value="142" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="5" />
-          <entry key="JAVA" value="23612" />
+          <entry key="JAVA" value="23879" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="XML" value="142" />
         </counts>
@@ -83,11 +70,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.44403803">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-204">
-                  <caret line="180" column="40" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="40" />
+                <state relative-caret-position="2600">
+                  <caret line="199" column="21" selection-start-line="199" selection-start-column="21" selection-end-line="199" selection-end-column="21" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#12165#12166#0" expanded="true" />
@@ -97,6 +84,15 @@
                     <element signature="e#12975#12976#0" expanded="true" />
                     <element signature="e#13035#13036#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="120">
+                  <caret line="8" selection-start-line="8" selection-end-line="8" />
                 </state>
               </provider>
             </entry>
@@ -123,15 +119,6 @@
                     <element signature="e#1935#1936#0" expanded="true" />
                     <element signature="e#1970#1971#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar://$USER_HOME$/Downloads/js-19.0.2.jar!/com/oracle/truffle/js/runtime/builtins/Builtin.class">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -202,7 +189,7 @@
             <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="266">
-                  <caret line="226" column="5" lean-forward="true" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
+                  <caret line="193" column="43" lean-forward="true" selection-start-line="193" selection-start-column="43" selection-end-line="193" selection-end-column="43" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -411,6 +398,29 @@
             </path>
             <path>
               <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="generated-test-sources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="maven-status" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ValkyrieInstrument" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test-classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ValkyrieInstrument" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -429,7 +439,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="valkyrieinstrument" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562700420017" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562702428837" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -523,34 +533,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 16m 46s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 46m 17s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 21m 02s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 46m 34s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 44m 35s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 47m 38s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 45m 02s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 49m 59s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 45m 38s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 50m 47s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 46m 29s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 51m 50s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 47m 20s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 53m 44s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 51m 05s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 56m 44s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 13h 51m 25s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 58m 44s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 21m 52s.xml">
+    <history-entry file="ValkyrieTest - 2019.07.09 at 14h 59m 41s.xml">
       <configuration name="ValkyrieTest" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -807,13 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/test-classes/InstrumentTests/ValkyrieTest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-903">
@@ -975,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/InstrumentClasses/Valkyrie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="180" column="40" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="40" />
+        <state relative-caret-position="2600">
+          <caret line="199" column="21" selection-start-line="199" selection-start-column="21" selection-end-line="199" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#12165#12166#0" expanded="true" />
@@ -986,6 +989,13 @@
             <element signature="e#12975#12976#0" expanded="true" />
             <element signature="e#13035#13036#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/META-INF/truffle/instrument">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -999,7 +1009,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/InstrumentTests/ValkyrieTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
-          <caret line="226" column="5" lean-forward="true" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
+          <caret line="193" column="43" lean-forward="true" selection-start-line="193" selection-start-column="43" selection-end-line="193" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
