@@ -1,5 +1,6 @@
 package InstrumentClasses.TokenClasses;
 
+import InstrumentClasses.Base58;
 import InstrumentClasses.ProgramController;
 
 public class PolyInstance extends TokenInstance{
@@ -28,10 +29,7 @@ public class PolyInstance extends TokenInstance{
         else if(instance.amount < 0) {
             throw new IllegalArgumentException("Provided poly box has negative amount");
         }
-//        else if(ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
-//            throw new IllegalArgumentException("Provided poly box has an invalid public key");
-//        }
-        else if(ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
+        else if(Base58.decode(instance.publicKey).length != ProgramController.keyLength) {
             throw new IllegalArgumentException("Provided poly box has an invalid public key");
         }
     }

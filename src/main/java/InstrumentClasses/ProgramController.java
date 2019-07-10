@@ -4,20 +4,11 @@ import InstrumentClasses.TokenClasses.ArbitInstance;
 import InstrumentClasses.TokenClasses.AssetInstance;
 import InstrumentClasses.TokenClasses.PolyInstance;
 import InstrumentClasses.TokenClasses.TokenInstance;
-//import com.oracle.truffle.api.ArrayUtils;
-import com.oracle.truffle.api.instrumentation.Instrumenter;
-import com.oracle.truffle.api.instrumentation.SourceSectionFilter;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Engine;
-
 import java.io.Closeable;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-
 
 
 public class ProgramController implements Closeable {
@@ -159,7 +150,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset creation");
         }
-        if(ProgramController.base58Decode(issuer).length != keyLength || ProgramController.base58Decode(to).length != keyLength) {
+        if(Base58.decode(issuer).length != keyLength || Base58.decode(to).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in asset creation");
         }
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
@@ -176,7 +167,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset transfer");
         }
-        if(ProgramController.base58Decode(issuer).length != keyLength || ProgramController.base58Decode(from).length != keyLength || ProgramController.base58Decode(to).length != keyLength) {
+        if(Base58.decode(issuer).length != keyLength || Base58.decode(from).length != keyLength || Base58.decode(to).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in asset transfer");
         }
         if(!checkEnoughAssetsAvailableForTransfer(from, amount, fee, assetCode, issuer)){
@@ -238,7 +229,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for arbit transfer");
         }
-        if(ProgramController.base58Decode(to).length != keyLength || ProgramController.base58Decode(from).length != keyLength) {
+        if(Base58.decode(to).length != keyLength || Base58.decode(from).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in arbit transfer");
         }
         if(!checkEnoughArbitsAvailableForTransfer(from, amount, fee)){
@@ -345,46 +336,46 @@ public class ProgramController implements Closeable {
 
     public static final int keyLength = 32;
 
-    public static final BigInteger BASE = BigInteger.valueOf(58);
-
-    public static final char ALPHABET[] = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ".toCharArray();
-
-    public static byte[] base58Decode(final String source) {
-        BigInteger value = BigInteger.ZERO;
-
-        Iterator<Character> it = stringIterator(source);
-        while (it.hasNext()) {
-            value = value.add(BigInteger.valueOf(Arrays.asList(ALPHABET).indexOf(it.next())));
-            if (it.hasNext())
-                value = value.multiply(BASE);
-        }
-        return value.toByteArray();
-    }
-
-    public static Iterator<Character> stringIterator(final String string) {
-        // Ensure the error is found as soon as possible.
-        if (string == null)
-            throw new NullPointerException();
-
-        return new Iterator<Character>() {
-            private int index = 0;
-
-            public boolean hasNext() {
-                return index < string.length();
-            }
-
-            public Character next() {
-                /*
-                 * Throw NoSuchElementException as defined by the Iterator contract, not IndexOutOfBoundsException.
-                 */
-                if (!hasNext())
-                    throw new NoSuchElementException();
-                return string.charAt(index++);
-            }
-
-            public void remove() {
-                throw new UnsupportedOperationException();
-            }
-        };
-    }
+//    public static final BigInteger BASE = BigInteger.valueOf(58);
+//
+//    public static final char ALPHABET[] = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ".toCharArray();
+//
+//    public static byte[] base58Decode(final String source) {
+//        BigInteger value = BigInteger.ZERO;
+//
+//        Iterator<Character> it = stringIterator(source);
+//        while (it.hasNext()) {
+//            value = value.add(BigInteger.valueOf(Arrays.asList(ALPHABET).indexOf(it.next())));
+//            if (it.hasNext())
+//                value = value.multiply(BASE);
+//        }
+//        return value.toByteArray();
+//    }
+//
+//    public static Iterator<Character> stringIterator(final String string) {
+//        // Ensure the error is found as soon as possible.
+//        if (string == null)
+//            throw new NullPointerException();
+//
+//        return new Iterator<Character>() {
+//            private int index = 0;
+//
+//            public boolean hasNext() {
+//                return index < string.length();
+//            }
+//
+//            public Character next() {
+//                /*
+//                 * Throw NoSuchElementException as defined by the Iterator contract, not IndexOutOfBoundsException.
+//                 */
+//                if (!hasNext())
+//                    throw new NoSuchElementException();
+//                return string.charAt(index++);
+//            }
+//
+//            public void remove() {
+//                throw new UnsupportedOperationException();
+//            }
+//        };
+//    }
 }
