@@ -165,13 +165,13 @@ public class ValkyrieTest {
         ProgramController controller = ProgramController.find(context.getEngine());
 
         ArbitInstance arbitInstance = new ArbitInstance(publicKey2, new Long(12), inputBox);
-//        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList();
-//        arbitBoxesForUse.add(arbitInstance);
-//        controller.setTokenBoxesForUse(arbitBoxesForUse);
-
-        ArrayList<ArbitInstance> arbitBoxesForUse = new ArrayList();
+        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList();
         arbitBoxesForUse.add(arbitInstance);
-        controller.setArbitBoxesForUse(arbitBoxesForUse);
+        controller.setTokenBoxesForUse(arbitBoxesForUse);
+
+//        ArrayList<ArbitInstance> arbitBoxesForUse = new ArrayList();
+//        arbitBoxesForUse.add(arbitInstance);
+//        controller.setArbitBoxesForUse(arbitBoxesForUse);
 
         context.eval("js", testValkyrieScript);
         context.eval("js", "transferArbits()");

@@ -159,7 +159,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset creation");
         }
-        if(base58Decode(issuer).length != keyLength || base58Decode(to).length != keyLength) {
+        if(ProgramController.base58Decode(issuer).length != keyLength || ProgramController.base58Decode(to).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in asset creation");
         }
         newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
@@ -176,7 +176,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for asset transfer");
         }
-        if(base58Decode(issuer).length != keyLength || base58Decode(from).length != keyLength || base58Decode(to).length != keyLength) {
+        if(ProgramController.base58Decode(issuer).length != keyLength || ProgramController.base58Decode(from).length != keyLength || ProgramController.base58Decode(to).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in asset transfer");
         }
         if(!checkEnoughAssetsAvailableForTransfer(from, amount, fee, assetCode, issuer)){
@@ -238,7 +238,7 @@ public class ProgramController implements Closeable {
         if(fee < 0) {
             throw new IllegalArgumentException("Negative fee for arbit transfer");
         }
-        if(base58Decode(to).length != keyLength || base58Decode(from).length != keyLength) {
+        if(ProgramController.base58Decode(to).length != keyLength || ProgramController.base58Decode(from).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in arbit transfer");
         }
         if(!checkEnoughArbitsAvailableForTransfer(from, amount, fee)){

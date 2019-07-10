@@ -1,5 +1,4 @@
 package InstrumentClasses.TokenClasses;
-
 import InstrumentClasses.ProgramController;
 
 public class AssetInstance extends TokenInstance{
@@ -26,6 +25,7 @@ public class AssetInstance extends TokenInstance{
         this.boxId = boxId;
     }
 
+
     public String getInstanceType() {
         return super.getInstanceType();
     }
@@ -37,6 +37,9 @@ public class AssetInstance extends TokenInstance{
         else if(instance.amount < 0) {
             throw new IllegalArgumentException("Provided asset box has negative amount");
         }
+//        else if(ProgramController.base58Decode(instance.issuer).length != ProgramController.keyLength || ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
+//            throw new IllegalArgumentException("Provided asset box has an invalid public key");
+//        }
         else if(ProgramController.base58Decode(instance.issuer).length != ProgramController.keyLength || ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
             throw new IllegalArgumentException("Provided asset box has an invalid public key");
         }

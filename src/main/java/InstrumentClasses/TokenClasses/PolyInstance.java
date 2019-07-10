@@ -28,6 +28,9 @@ public class PolyInstance extends TokenInstance{
         else if(instance.amount < 0) {
             throw new IllegalArgumentException("Provided poly box has negative amount");
         }
+//        else if(ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
+//            throw new IllegalArgumentException("Provided poly box has an invalid public key");
+//        }
         else if(ProgramController.base58Decode(instance.publicKey).length != ProgramController.keyLength) {
             throw new IllegalArgumentException("Provided poly box has an invalid public key");
         }
