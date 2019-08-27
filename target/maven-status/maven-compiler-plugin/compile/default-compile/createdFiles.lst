@@ -10,5 +10,5 @@ InstrumentClasses/Valkyrie$1.class
 InstrumentClasses/Base58.class
 InstrumentClasses/TokenClasses/TokenInstance.class
 InstrumentClasses/ValkyrieOptionOptionDescriptors.class
-InstrumentClasses/TokenClasses/PolyInstance.class
 InstrumentClasses/ServiceFactory.class
+InstrumentClasses/TokenClasses/PolyInstance.class

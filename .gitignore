@@ -4,5 +4,10 @@
 # log files
 *.log
 
+# target files
+target/maven-archiver
+target/surefire-reports
+target/maven-status
+
 #Shell script
 cleanCompileBuild.sh
