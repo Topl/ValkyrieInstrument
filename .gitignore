@@ -1,5 +1,6 @@
 # IDE/Editor files
 .idea
+*.iml
 
 # log files
 *.log
