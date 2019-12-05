@@ -6,7 +6,7 @@
 
     <groupId>Valkyrie</groupId>
     <artifactId>ValkyrieInstrument</artifactId>
-    <version>1.0</version>
+    <version>19.3.0</version>
 
     <!-- https://mvnrepository.com/artifact/org.graalvm.sdk/graal-sdk -->
     <dependencies>
@@ -14,30 +14,30 @@
         <dependency>
             <groupId>org.graalvm.truffle</groupId>
             <artifactId>truffle-api</artifactId>
-            <version>19.2.0</version>
+            <version>19.3.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.graalvm.truffle/truffle-dsl-processor -->
         <dependency>
             <groupId>org.graalvm.truffle</groupId>
             <artifactId>truffle-dsl-processor</artifactId>
-            <version>19.2.0</version>
+            <version>19.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>graal-sdk</artifactId>
-            <version>19.2.0</version>
+            <version>19.3.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.graalvm.sdk/polyglot-tck -->
         <dependency>
             <groupId>org.graalvm.sdk</groupId>
             <artifactId>polyglot-tck</artifactId>
-            <version>19.2.0</version>
+            <version>19.3.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.graalvm.js/js -->
         <dependency>
             <groupId>org.graalvm.js</groupId>
             <artifactId>js</artifactId>
-            <version>19.0.2</version>
+            <version>19.3.0</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
@@ -55,25 +55,30 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
+                    <compilerVersion>1.8</compilerVersion>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <argLine>-Dtruffle.class.path.append="lib/ValkyrieInsrument-1.0.jar"</argLine>
+                    <argLine>-Dtruffle.class.path.append="ValkyrieInsrument-19.3.0-jar-with-dependencies.jar"</argLine>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.example.Main</mainClass>
-                        </manifest>
-                    </archive>
+                <!--<descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>-->
+                    <descriptors>
+                        <descriptor>src/resources/assembly.xml</descriptor>
+                    </descriptors>
+                    <outputDirectory>lib</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
@@ -81,6 +86,26 @@
                         <goals>
                             <goal>single</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/annotations/InstrumentClasses/</source>
+                                <!--<source>target/classes/InstrumentClasses/</source>-->
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -1,0 +1,13 @@
+<assembly>
+    <id>with-boot-classpath</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+                <excludes>
+                    <exclude>org.graalvm.polyglot</exclude>
+                </excludes>
+        </dependencySet>
+    </dependencySets>
+</assembly>
