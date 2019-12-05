@@ -16,7 +16,7 @@ import java.util.Iterator;
 
 
 
-@TruffleInstrument.Registration(id = "Valkyrie", name = "Valkyrie Instrument", services = {ProgramController.class})
+@TruffleInstrument.Registration(id = "Valkyrie", name = "Valkyrie Instrument", version = "1.0.0", services = {ProgramController.class})
 public final class Valkyrie extends TruffleInstrument {
 
     public ProgramController controller;
