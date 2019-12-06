@@ -6,18 +6,17 @@ import InstrumentClasses.TokenClasses.AssetInstance;
 import InstrumentClasses.TokenClasses.TokenInstance;
 import InstrumentClasses.Valkyrie;
 import org.graalvm.polyglot.Context;
-import org.graalvm.polyglot.Value;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ValkyrieTest {
+class ValkyrieTest {
 
-    String publicKey1 = "6sYyiTguyQ455w2dGEaNbrwkAWAEYV1Zk6FtZMknWDKQ";
-    String publicKey2 = "A9vRt6hw7w4c7b4qEkQHYptpqBGpKM5MGoXyrkGCbrfb";
-    String publicKey3 = "F6ABtYMsJABDLH2aj7XVPwQr5mH7ycsCE4QGQrLeB3xU";
+    private String publicKey1 = "6sYyiTguyQ455w2dGEaNbrwkAWAEYV1Zk6FtZMknWDKQ";
+    private String publicKey2 = "A9vRt6hw7w4c7b4qEkQHYptpqBGpKM5MGoXyrkGCbrfb";
+    private String publicKey3 = "F6ABtYMsJABDLH2aj7XVPwQr5mH7ycsCE4QGQrLeB3xU";
     //Helper
     private String createTestScriptWithParams(Long createAmount, Long createFee, Long transferAmount, Long transferFee) {
         return String.format(
@@ -66,7 +65,7 @@ public class ValkyrieTest {
             "   else throw new Error(res);}; ", publicKey1, publicKey2, publicKey3);
     }
 
-    private String testValkyrieScript = createTestScriptWithParams(new Long(10), new Long(0), new Long(10), new Long(0));
+    private String testValkyrieScript = createTestScriptWithParams(10L, 0L, 10L, 0L);
 
     @Test
     void build() {
@@ -77,8 +76,8 @@ public class ValkyrieTest {
                 .allowAllAccess(true)
                 .build();
 
-        assertTrue(Valkyrie.getController(context.getEngine()) != null);
-        assertTrue(ProgramController.find(context.getEngine()) != null);
+        assertNotNull(Valkyrie.getController(context.getEngine()));
+        assertNotNull(ProgramController.find(context.getEngine()));
         context.close();
     }
 
@@ -115,7 +114,7 @@ public class ValkyrieTest {
 //        assertTrue(context.getBindings("js").getMember("res").asBoolean());
 
         assertEquals(1, controller.getNewAssetInstances().size());
-        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals(publicKey3));
+        assertEquals(controller.getNewAssetInstances().get(0).publicKey, publicKey3);
         assertEquals(10, controller.getNewAssetInstances().get(0).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -132,8 +131,8 @@ public class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        AssetInstance assetInstance = new AssetInstance(publicKey2, publicKey1, "testAssets", new Long(12), "", inputBox);
-        ArrayList<AssetInstance> assetBoxesForUse = new ArrayList();
+        AssetInstance assetInstance = new AssetInstance(publicKey2, publicKey1, "testAssets", 12L, "", inputBox);
+        ArrayList<AssetInstance> assetBoxesForUse = new ArrayList<>();
         assetBoxesForUse.add(assetInstance);
         controller.setAssetBoxesForUse(assetBoxesForUse);
 
@@ -146,8 +145,8 @@ public class ValkyrieTest {
         assertEquals(inputBox, controller.getBoxesToRemove().get(0));
 
         assertEquals(2, controller.getNewAssetInstances().size());
-        assertTrue(controller.getNewAssetInstances().get(0).publicKey.equals(publicKey3));
-        assertTrue(controller.getNewAssetInstances().get(1).publicKey.equals(publicKey2));
+        assertEquals(controller.getNewAssetInstances().get(0).publicKey, publicKey3);
+        assertEquals(controller.getNewAssetInstances().get(1).publicKey, publicKey2);
         assertEquals(assetInstance.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -164,8 +163,8 @@ public class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        ArbitInstance arbitInstance = new ArbitInstance(publicKey2, new Long(12), inputBox);
-        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList();
+        ArbitInstance arbitInstance = new ArbitInstance(publicKey2, 12L, inputBox);
+        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList<>();
         arbitBoxesForUse.add(arbitInstance);
         controller.setTokenBoxesForUse(arbitBoxesForUse);
 
@@ -182,8 +181,8 @@ public class ValkyrieTest {
         assertEquals(inputBox, controller.getBoxesToRemove().get(0));
 
         assertEquals(2, controller.getNewArbitInstances().size());
-        assertTrue(controller.getNewArbitInstances().get(0).publicKey.equals(publicKey3));
-        assertTrue(controller.getNewArbitInstances().get(1).publicKey.equals(publicKey2));
+        assertEquals(controller.getNewArbitInstances().get(0).publicKey, publicKey3);
+        assertEquals(controller.getNewArbitInstances().get(1).publicKey, publicKey2);
         assertEquals(arbitInstance.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
@@ -191,8 +190,8 @@ public class ValkyrieTest {
 
     @Test
     void createWithNegativeAmountShouldFail() {
-        Long amount = new Long(-10);
-        Long fee = new Long(0);
+        Long amount = (long) -10;
+        Long fee = 0L;
 
         Context context = Context
                 .newBuilder("js")
@@ -200,7 +199,7 @@ public class ValkyrieTest {
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
-        context.eval("js", createTestScriptWithParams(amount, fee, new Long(0) , new Long(0)));
+        context.eval("js", createTestScriptWithParams(amount, fee, 0L, 0L));
         context.eval("js", "create()");
         assertFalse(controller.didExecuteCorrectly);
         context.close();
@@ -208,8 +207,8 @@ public class ValkyrieTest {
 
     @Test
     void createWithNegativeFeeShouldFail() {
-        Long amount = new Long(0);
-        Long fee = new Long(-10);
+        Long amount = 0L;
+        Long fee = (long) -10;
 
         Context context = Context
                 .newBuilder("js")
@@ -217,7 +216,7 @@ public class ValkyrieTest {
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
-        context.eval("js", createTestScriptWithParams(amount, fee, new Long(0) , new Long(0)));
+        context.eval("js", createTestScriptWithParams(amount, fee, 0L, 0L));
         context.eval("js", "create()");
         assertTrue(controller.getNewAssetInstances().isEmpty());
         assertFalse(controller.didExecuteCorrectly);
@@ -227,11 +226,11 @@ public class ValkyrieTest {
     //Should wrap context evals in try blocks for when developers dont handle Valkyrie exceptions
     @Test
     void invalidTransferShouldNotMaintainCreate() {
-        Long createAmount = new Long(10);
-        Long createFee = new Long(0);
+        Long createAmount = 10L;
+        Long createFee = 0L;
 
-        Long transferAmount = new Long(20);
-        Long transferFee = new Long(0);
+        Long transferAmount = 20L;
+        Long transferFee = 0L;
 
         Context context = Context
                 .newBuilder("js")
@@ -243,7 +242,7 @@ public class ValkyrieTest {
         try {
             context.eval("js", "createAndTransferAssets()");
         }
-        catch (Exception e) {
+        catch (Exception ignored) {
         }
         finally {
             assertFalse(controller.didExecuteCorrectly);
