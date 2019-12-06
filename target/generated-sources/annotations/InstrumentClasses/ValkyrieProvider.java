@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @GeneratedBy(Valkyrie.class)
-@Registration(id = "Valkyrie", name = "Valkyrie Instrument")
+@Registration(id = "Valkyrie", name = "Valkyrie Instrument", version = "1.0.0")
 public class ValkyrieProvider implements Provider {
 
     @Override
