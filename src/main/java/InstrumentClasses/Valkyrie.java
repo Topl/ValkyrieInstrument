@@ -1,23 +1,41 @@
 package InstrumentClasses;
+
+import com.oracle.truffle.api.Option;
+import com.oracle.truffle.api.instrumentation.*;
+import com.oracle.truffle.api.instrumentation.TruffleInstrument.Registration;
 import com.oracle.truffle.api.CallTarget;
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.frame.VirtualFrame;
-import com.oracle.truffle.api.instrumentation.*;
 import com.oracle.truffle.api.nodes.Node;
 import com.oracle.truffle.api.object.DynamicObject;
 import com.oracle.truffle.js.runtime.JSArguments;
 import com.oracle.truffle.js.runtime.builtins.JSFunction;
 import com.oracle.truffle.js.runtime.builtins.JSFunctionData;
-import org.graalvm.options.OptionDescriptors;
 import org.graalvm.polyglot.Instrument;
 import org.graalvm.polyglot.Engine;
 
+import org.graalvm.options.OptionCategory;
+import org.graalvm.options.OptionDescriptors;
+import org.graalvm.options.OptionKey;
+import org.graalvm.options.OptionStability;
+import org.graalvm.options.OptionValues;
+
 import java.util.Iterator;
 
-
-
-@TruffleInstrument.Registration(id = "Valkyrie", name = "Valkyrie Instrument", version = "1.0.0", services = {ProgramController.class})
+/**
+ * The parser instrument for evaluating Valkyrie function calls within Topl's Bifrost programs. This instrument uses
+ * the {@link Registration} annotation to automatically register the instrument as a service usable during JVM runtime.
+ */
+@Registration(id = "Valkyrie", name = "Valkyrie Instrument", version = "1.0.0", services = {ProgramController.class})
 public final class Valkyrie extends TruffleInstrument {
+
+
+    /**
+     * Default option to enable the instrument's use when called from a {@link org.graalvm.polyglot.Context}, called
+     * during {@link #onCreate(Env)}
+     */
+    @Option(name = "", help = "Enable Valkyrie Instrument (default: false)", category = OptionCategory.USER, stability = OptionStability.EXPERIMENTAL)
+    static final OptionKey<Boolean> ENABLED = new OptionKey<>(false);
 
     public ProgramController controller;
     private Env env;
@@ -43,9 +61,18 @@ public final class Valkyrie extends TruffleInstrument {
         }
     }
 
-
+    /**
+     * Default override to initialize an instrument within an environment.
+     *
+     * @param env The environment for the listener instrument, where all options and input/output are available to use
+     *            from the same environment.
+     */
     @Override
-    protected void onCreate(TruffleInstrument.Env env) {
+    protected void onCreate(final Env env) {
+
+        final OptionValues options = env.getOptions();
+
+        //TODO refactor into enable function to only add source filter when ENABLED option is true
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
         SourceSectionFilter filter = builder.tagIs(StandardTags.CallTag.class).build();
         Instrumenter instrumenter = env.getInstrumenter();
@@ -220,7 +247,6 @@ public final class Valkyrie extends TruffleInstrument {
         return this.env;
     }
 
-
     @Override
     protected void onDispose(TruffleInstrument.Env env) {
         controller.clear();
@@ -229,7 +255,7 @@ public final class Valkyrie extends TruffleInstrument {
 
     @Override
     protected OptionDescriptors getOptionDescriptors() {
-        return new ValkyrieOptionOptionDescriptors();
+        return new ValkyrieOptionDescriptors();
     }
 
     private static Long castObjectToLong(Object obj) {
