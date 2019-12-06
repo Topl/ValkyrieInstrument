@@ -4,7 +4,7 @@ import Instrument.ProgramController;
 import TokenBox.Arbit;
 import TokenBox.Asset;
 import TokenBox.Token;
-import Instrument.Valkyrie;
+import Instrument.ValkyrieInstrument;
 import org.graalvm.polyglot.Context;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValkyrieTest {
+class ValkyrieInstrumentTest {
 
     private String publicKey1 = "6sYyiTguyQ455w2dGEaNbrwkAWAEYV1Zk6FtZMknWDKQ";
     private String publicKey2 = "A9vRt6hw7w4c7b4qEkQHYptpqBGpKM5MGoXyrkGCbrfb";
@@ -72,11 +72,11 @@ class ValkyrieTest {
 
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .allowAllAccess(true)
                 .build();
 
-        assertNotNull(Valkyrie.getController(context.getEngine()));
+        assertNotNull(ValkyrieInstrument.getController(context.getEngine()));
         assertNotNull(ProgramController.find(context.getEngine()));
         context.close();
     }
@@ -86,7 +86,7 @@ class ValkyrieTest {
 
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
@@ -102,7 +102,7 @@ class ValkyrieTest {
     void testTransferAssets() {
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
@@ -124,7 +124,7 @@ class ValkyrieTest {
     void transferAssetsWithInputBox() {
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         byte[] inputBox = {0, 1};
@@ -156,7 +156,7 @@ class ValkyrieTest {
     void transferArbitsWithInputBox() {
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         byte[] inputBox = {0, 1};
@@ -195,7 +195,7 @@ class ValkyrieTest {
 
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
@@ -212,7 +212,7 @@ class ValkyrieTest {
 
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());
@@ -223,7 +223,7 @@ class ValkyrieTest {
         context.close();
     }
 
-    //Should wrap context evals in try blocks for when developers dont handle Valkyrie exceptions
+    //Should wrap context evals in try blocks for when developers dont handle ValkyrieInstrument exceptions
     @Test
     void invalidTransferShouldNotMaintainCreate() {
         Long createAmount = 10L;
@@ -234,7 +234,7 @@ class ValkyrieTest {
 
         Context context = Context
                 .newBuilder("js")
-                .option("Valkyrie", "true")
+                .option("ValkyrieInstrument", "true")
                 .build();
 
         ProgramController controller = ProgramController.find(context.getEngine());

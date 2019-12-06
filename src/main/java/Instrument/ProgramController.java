@@ -53,7 +53,7 @@ public class ProgramController implements Closeable {
     }
 
     static {
-        Valkyrie.setFactory(new ServiceFactory<ProgramController>() {
+        ValkyrieInstrument.setFactory(new ServiceFactory<ProgramController>() {
             @Override
             public ProgramController create(TruffleInstrument.Env env) {
                 return new ProgramController(env);
@@ -67,7 +67,7 @@ public class ProgramController implements Closeable {
      */
 
     public static ProgramController find(Engine engine) {
-        return Valkyrie.getController(engine);
+        return ValkyrieInstrument.getController(engine);
     }
 
     public void setArbitBoxesForUse(ArrayList<Arbit> arbits) {
@@ -141,7 +141,7 @@ public class ProgramController implements Closeable {
 
 
     /*
-    Methods to be used by instrument to update values for encountered Valkyrie functions
+    Methods to be used by instrument to update values for encountered ValkyrieInstrument functions
     */
     protected void createAssets(String issuer, String to, Long amount, String assetCode, Long fee, String data) {
         //TODO check enough fees

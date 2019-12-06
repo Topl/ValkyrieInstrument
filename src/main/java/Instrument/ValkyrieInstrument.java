@@ -19,18 +19,18 @@ import org.graalvm.options.OptionValues;
 import java.util.Iterator;
 
 /**
- * The parser instrument for evaluating Valkyrie function calls within Topl's Bifrost programs. This instrument uses
+ * The parser instrument for evaluating ValkyrieInstrument function calls within Topl's Bifrost programs. This instrument uses
  * the {@link Registration} annotation to automatically register the instrument as a service usable during JVM runtime.
  */
-@Registration(id = "Valkyrie", name = "Valkyrie Instrument", version = "1.0.0", services = {ProgramController.class})
-public final class Valkyrie extends TruffleInstrument {
+@Registration(id = "ValkyrieInstrument", name = "ValkyrieInstrument Instrument", version = "1.0.0", services = {ProgramController.class})
+public final class ValkyrieInstrument extends TruffleInstrument {
 
 
     /**
      * Default option to enable the instrument's use when called from a {@link org.graalvm.polyglot.Context}, called
      * during {@link #onCreate(Env)}
      */
-    @Option(name = "", help = "Enable Valkyrie Instrument (default: false)", category = OptionCategory.USER, stability = OptionStability.EXPERIMENTAL)
+    @Option(name = "", help = "Enable ValkyrieInstrument Instrument (default: false)", category = OptionCategory.USER, stability = OptionStability.EXPERIMENTAL)
     static final OptionKey<Boolean> ENABLED = new OptionKey<>(false);
 
     public ProgramController controller;
@@ -43,7 +43,7 @@ public final class Valkyrie extends TruffleInstrument {
 //        if (factory == null || !factory.getClass().getName().startsWith("com.oracle.truffle.tools.profiler")) {
 //            throw new IllegalArgumentException("Wrong factory: " + factory);
 //        }
-        Valkyrie.factory = factory;
+        ValkyrieInstrument.factory = factory;
     }
 
     //Static block loaded at initialization
@@ -196,7 +196,7 @@ public final class Valkyrie extends TruffleInstrument {
                                             default:
                                                 controller.didExecuteCorrectly = false;
                                                 CompilerDirectives.transferToInterpreterAndInvalidate();
-                                                throw context.createUnwind("ValkyrieError: Method not found in Valkyrie namespace");
+                                                throw context.createUnwind("ValkyrieError: Method not found in ValkyrieInstrument namespace");
 
                                         }
                                         //Non valkyrie (ordinary) function - do nothing
@@ -240,7 +240,7 @@ public final class Valkyrie extends TruffleInstrument {
     }
 
     public static ProgramController getController(Engine engine){
-        Instrument instrument = engine.getInstruments().get("Valkyrie");
+        Instrument instrument = engine.getInstruments().get("ValkyrieInstrument");
         if (instrument == null) {
             throw new IllegalStateException("Instrument is not installed.");
         }
