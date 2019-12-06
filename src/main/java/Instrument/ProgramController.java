@@ -1,9 +1,10 @@
-package InstrumentClasses;
+package Instrument;
 
-import InstrumentClasses.TokenClasses.ArbitInstance;
-import InstrumentClasses.TokenClasses.AssetInstance;
-import InstrumentClasses.TokenClasses.PolyInstance;
-import InstrumentClasses.TokenClasses.TokenInstance;
+import TokenBox.Arbit;
+import TokenBox.Asset;
+import TokenBox.Poly;
+import TokenBox.Token;
+import Utils.Base58;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Engine;
@@ -18,14 +19,14 @@ public class ProgramController implements Closeable {
     public Context context;
 
     //Bifrost boxes from wallet should be cast into instances of local token classes
-    private ArrayList<AssetInstance> assetBoxesForUse;
-    private ArrayList<ArbitInstance> arbitBoxesForUse;
-    private ArrayList<PolyInstance> polyBoxesForUse;
+    private ArrayList<Asset> assetBoxesForUse;
+    private ArrayList<Arbit> arbitBoxesForUse;
+    private ArrayList<Poly> polyBoxesForUse;
 
     private Long feesCollected;
 
-    private  ArrayList<AssetInstance> newAssets;
-    private ArrayList<ArbitInstance> newArbits;
+    private  ArrayList<Asset> newAssets;
+    private ArrayList<Arbit> newArbits;
 
     private ArrayList<byte[]> boxesToRemove;
 
@@ -69,49 +70,49 @@ public class ProgramController implements Closeable {
         return Valkyrie.getController(engine);
     }
 
-    public void setArbitBoxesForUse(ArrayList<ArbitInstance> arbitInstances) {
-        for(ArbitInstance instance: arbitInstances) {
-            ArbitInstance.validateWithBoxId(instance);
+    public void setArbitBoxesForUse(ArrayList<Arbit> arbits) {
+        for(Arbit instance: arbits) {
+            Arbit.validateWithBoxId(instance);
         }
-        this.arbitBoxesForUse = (ArrayList<ArbitInstance>)arbitInstances.clone();
+        this.arbitBoxesForUse = (ArrayList<Arbit>) arbits.clone();
     }
 
-    public void setAssetBoxesForUse(ArrayList<AssetInstance> assetInstances) {
-        for(AssetInstance instance: assetInstances) {
-            AssetInstance.validateWithBoxId(instance);
+    public void setAssetBoxesForUse(ArrayList<Asset> assets) {
+        for(Asset instance: assets) {
+            Asset.validateWithBoxId(instance);
         }
-        this.assetBoxesForUse = (ArrayList<AssetInstance>)assetInstances.clone();
+        this.assetBoxesForUse = (ArrayList<Asset>) assets.clone();
     }
 
-    public void setPolyBoxesForUse(ArrayList<PolyInstance> polyInstances) {
-        for(PolyInstance instance: polyInstances) {
-            PolyInstance.validateWithBoxId(instance);
+    public void setPolyBoxesForUse(ArrayList<Poly> polys) {
+        for(Poly instance: polys) {
+            Poly.validateWithBoxId(instance);
         }
-        this.polyBoxesForUse = (ArrayList<PolyInstance>)polyInstances.clone();
+        this.polyBoxesForUse = (ArrayList<Poly>) polys.clone();
     }
 
-    public void setTokenBoxesForUse(ArrayList<TokenInstance> tokenInstances) {
-        for(TokenInstance instance: tokenInstances) {
+    public void setTokenBoxesForUse(ArrayList<Token> tokens) {
+        for(Token instance: tokens) {
             if(instance.instanceType.equals("Asset")) {
-                AssetInstance.validateWithBoxId((AssetInstance)instance);
-                this.assetBoxesForUse.add((AssetInstance)instance);
+                Asset.validateWithBoxId((Asset)instance);
+                this.assetBoxesForUse.add((Asset)instance);
             }
             else if(instance.instanceType.equals("Arbit")) {
-                ArbitInstance.validateWithBoxId((ArbitInstance)instance);
-                this.arbitBoxesForUse.add((ArbitInstance)instance);
+                Arbit.validateWithBoxId((Arbit)instance);
+                this.arbitBoxesForUse.add((Arbit)instance);
             }
             else if(instance.instanceType.equals("Poly")) {
-                PolyInstance.validateWithBoxId((PolyInstance)instance);
-                this.polyBoxesForUse.add((PolyInstance)instance);
+                Poly.validateWithBoxId((Poly)instance);
+                this.polyBoxesForUse.add((Poly)instance);
             }
         }
     }
 
-    public ArrayList<AssetInstance> getNewAssetInstances() {
+    public ArrayList<Asset> getNewAssetInstances() {
         return newAssets;
     }
 
-    public ArrayList<ArbitInstance> getNewArbitInstances() {
+    public ArrayList<Arbit> getNewArbitInstances() {
         return newArbits;
     }
 
@@ -153,7 +154,7 @@ public class ProgramController implements Closeable {
         if(Base58.decode(issuer).length != keyLength || Base58.decode(to).length != keyLength) {
             throw new IllegalArgumentException("Invalid public key provided in asset creation");
         }
-        newAssets.add(new AssetInstance(to, issuer, assetCode, amount - fee, data));
+        newAssets.add(new Asset(to, issuer, assetCode, amount - fee, data));
         //TODO fee collection
 //        feesCollected += fee;
     }
@@ -176,17 +177,17 @@ public class ProgramController implements Closeable {
         //Transferring assets from newly created assets first, until total transfer amount is reach
         Long amountCollected = new Long(0);
         Long change = new Long(0);
-        for(AssetInstance instance: newAssets) {
+        for(Asset instance: newAssets) {
             if(instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                 newAssets.remove(instance);
                 amountCollected += instance.amount;
                 if(amountCollected <= amount) {
-                    newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
+                    newAssets.add(new Asset(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
                 }
                 else {
                     change = new Long(amountCollected - amount);
-                    newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
-                    newAssets.add(new AssetInstance(from, instance.issuer, instance.assetCode, change, instance.data));
+                    newAssets.add(new Asset(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
+                    newAssets.add(new Asset(from, instance.issuer, instance.assetCode, change, instance.data));
                     break;
                 }
             }
@@ -194,18 +195,18 @@ public class ProgramController implements Closeable {
         }
         //If total transfer amount not reached from newly created assets, use boxes provided as arguments to controller to fund transfer
         if(amountCollected < amount && assetBoxesForUse != null) {
-            for(AssetInstance instance: assetBoxesForUse) {
+            for(Asset instance: assetBoxesForUse) {
                 if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                     assetBoxesForUse.remove(instance);
                     boxesToRemove.add(instance.boxId);
                     amountCollected += instance.amount;
                     if(amountCollected <= amount) {
-                        newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
+                        newAssets.add(new Asset(to, instance.issuer, instance.assetCode, instance.amount , instance.data));
                     }
                     else {
                         change = new Long(amountCollected - amount);
-                        newAssets.add(new AssetInstance(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
-                        newAssets.add(new AssetInstance(from, instance.issuer, instance.assetCode, change, instance.data));
+                        newAssets.add(new Asset(to, instance.issuer, instance.assetCode, instance.amount - change, instance.data));
+                        newAssets.add(new Asset(from, instance.issuer, instance.assetCode, change, instance.data));
                         break;
                     }
                 }
@@ -238,17 +239,17 @@ public class ProgramController implements Closeable {
         //Transferring arbits from newly created arbits first, until total transfer amount is reach
         Long amountCollected = new Long(0);
         Long change = new Long(0);
-        for(ArbitInstance instance: newArbits) {
+        for(Arbit instance: newArbits) {
             if(instance.publicKey.equals(from)) {
                 newArbits.remove(instance);
                 amountCollected += instance.amount;
                 if(amountCollected <= amount) {
-                    newArbits.add(new ArbitInstance(to, instance.amount));
+                    newArbits.add(new Arbit(to, instance.amount));
                 }
                 else {
                     change = new Long(amountCollected - amount);
-                    newArbits.add(new ArbitInstance(to, instance.amount - change));
-                    newArbits.add(new ArbitInstance(from, change));
+                    newArbits.add(new Arbit(to, instance.amount - change));
+                    newArbits.add(new Arbit(from, change));
                     break;
                 }
             }
@@ -256,18 +257,18 @@ public class ProgramController implements Closeable {
         }
         //If total transfer amount not reached from newly created arbits, use boxes provided as arguments to controller to fund transfer
         if(amountCollected < amount && arbitBoxesForUse != null) {
-            for(ArbitInstance instance: arbitBoxesForUse) {
+            for(Arbit instance: arbitBoxesForUse) {
                 if (instance.publicKey.equals(from)) {
                     arbitBoxesForUse.remove(instance);
                     boxesToRemove.add(instance.boxId);
                     amountCollected += instance.amount;
                     if(amountCollected <= amount) {
-                        newArbits.add(new ArbitInstance(to, instance.amount));
+                        newArbits.add(new Arbit(to, instance.amount));
                     }
                     else {
                         change = new Long(amountCollected - amount);
-                        newArbits.add(new ArbitInstance(to,instance.amount - change));
-                        newArbits.add(new ArbitInstance(from, change));
+                        newArbits.add(new Arbit(to,instance.amount - change));
+                        newArbits.add(new Arbit(from, change));
                         break;
                     }
                 }
@@ -285,7 +286,7 @@ public class ProgramController implements Closeable {
     //Helper
     private boolean checkEnoughAssetsAvailableForTransfer(String from, Long amount, Long fee, String assetCode, String issuer) {
         Long availableAmount = new Long(0);
-        for(AssetInstance instance: newAssets) {
+        for(Asset instance: newAssets) {
             if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                 availableAmount += instance.amount;
                 if(availableAmount >= amount) {
@@ -294,7 +295,7 @@ public class ProgramController implements Closeable {
             }
         }
         if(assetBoxesForUse != null) {
-            for (AssetInstance instance : assetBoxesForUse) {
+            for (Asset instance : assetBoxesForUse) {
                 if (instance.issuer.equals(issuer) && instance.assetCode.equals(assetCode) && instance.publicKey.equals(from)) {
                     availableAmount += instance.amount;
                     if (availableAmount >= amount) {
@@ -309,7 +310,7 @@ public class ProgramController implements Closeable {
     //Helper
     private boolean checkEnoughArbitsAvailableForTransfer(String from, Long amount, Long fee) {
         Long availableAmount = new Long(0);
-        for(ArbitInstance instance: newArbits) {
+        for(Arbit instance: newArbits) {
             if (instance.publicKey.equals(from)) {
                 availableAmount += instance.amount;
                 if(availableAmount >= amount) {
@@ -318,7 +319,7 @@ public class ProgramController implements Closeable {
             }
         }
         if(arbitBoxesForUse != null) {
-            for (ArbitInstance instance : arbitBoxesForUse) {
+            for (Arbit instance : arbitBoxesForUse) {
                 if (instance.publicKey.equals(from)) {
                     availableAmount += instance.amount;
                     if (availableAmount >= amount) {

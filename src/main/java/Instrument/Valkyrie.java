@@ -1,16 +1,12 @@
-package InstrumentClasses;
+package Instrument;
 
 import com.oracle.truffle.api.Option;
 import com.oracle.truffle.api.instrumentation.*;
 import com.oracle.truffle.api.instrumentation.TruffleInstrument.Registration;
-import com.oracle.truffle.api.CallTarget;
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.Node;
-import com.oracle.truffle.api.object.DynamicObject;
 import com.oracle.truffle.js.runtime.JSArguments;
-import com.oracle.truffle.js.runtime.builtins.JSFunction;
-import com.oracle.truffle.js.runtime.builtins.JSFunctionData;
 import org.graalvm.polyglot.Instrument;
 import org.graalvm.polyglot.Engine;
 
@@ -71,6 +67,10 @@ public final class Valkyrie extends TruffleInstrument {
     protected void onCreate(final Env env) {
 
         final OptionValues options = env.getOptions();
+        if(ENABLED.getValue(options)) {
+            enable(env);
+            env.registerService(this);
+        }
 
         //TODO refactor into enable function to only add source filter when ENABLED option is true
         SourceSectionFilter.Builder builder = SourceSectionFilter.newBuilder();
@@ -230,9 +230,13 @@ public final class Valkyrie extends TruffleInstrument {
             }
         });
 
-        controller = factory.create(env);
-        env.registerService(controller);
-        this.env = env;
+        //controller = factory.create(env);
+        //env.registerService(controller);
+        //this.env = env;
+    }
+
+    private void enable(final Env env) {
+        //TODO move SourceSection here
     }
 
     public static ProgramController getController(Engine engine){

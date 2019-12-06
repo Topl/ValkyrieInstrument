@@ -1,4 +1,4 @@
-package InstrumentClasses;
+package Instrument;
 
 import com.oracle.truffle.api.instrumentation.TruffleInstrument;
 

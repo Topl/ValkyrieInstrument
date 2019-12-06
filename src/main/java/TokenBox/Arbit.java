@@ -1,17 +1,17 @@
-package InstrumentClasses.TokenClasses;
+package TokenBox;
 
-import InstrumentClasses.Base58;
-import InstrumentClasses.ProgramController;
+import Utils.Base58;
+import Instrument.ProgramController;
 
-public class ArbitInstance extends TokenInstance{
+public class Arbit extends Token {
 
-    public ArbitInstance(String publicKey, Long amount) {
+    public Arbit(String publicKey, Long amount) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Arbit";
     }
 
-    public ArbitInstance(String publicKey, Long amount, byte[] boxId) {
+    public Arbit(String publicKey, Long amount, byte[] boxId) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Arbit";
@@ -22,7 +22,7 @@ public class ArbitInstance extends TokenInstance{
         return super.getInstanceType();
     }
 
-    public static void validateWithBoxId(ArbitInstance instance) {
+    public static void validateWithBoxId(Arbit instance) {
         if(instance.boxId == null) {
             throw new IllegalArgumentException("Provided arbit box does not have boxId");
         }

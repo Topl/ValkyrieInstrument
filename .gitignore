@@ -6,7 +6,7 @@
 *.log
 
 # target files
-target
+target/
 
 #Shell script
 cleanCompileBuild.sh

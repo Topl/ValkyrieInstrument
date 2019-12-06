@@ -1,10 +1,10 @@
 package InstrumentTests;
 
-import InstrumentClasses.ProgramController;
-import InstrumentClasses.TokenClasses.ArbitInstance;
-import InstrumentClasses.TokenClasses.AssetInstance;
-import InstrumentClasses.TokenClasses.TokenInstance;
-import InstrumentClasses.Valkyrie;
+import Instrument.ProgramController;
+import TokenBox.Arbit;
+import TokenBox.Asset;
+import TokenBox.Token;
+import Instrument.Valkyrie;
 import org.graalvm.polyglot.Context;
 import org.junit.jupiter.api.Test;
 
@@ -131,9 +131,9 @@ class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        AssetInstance assetInstance = new AssetInstance(publicKey2, publicKey1, "testAssets", 12L, "", inputBox);
-        ArrayList<AssetInstance> assetBoxesForUse = new ArrayList<>();
-        assetBoxesForUse.add(assetInstance);
+        Asset asset = new Asset(publicKey2, publicKey1, "testAssets", 12L, "", inputBox);
+        ArrayList<Asset> assetBoxesForUse = new ArrayList<>();
+        assetBoxesForUse.add(asset);
         controller.setAssetBoxesForUse(assetBoxesForUse);
 
         context.eval("js", testValkyrieScript);
@@ -147,7 +147,7 @@ class ValkyrieTest {
         assertEquals(2, controller.getNewAssetInstances().size());
         assertEquals(controller.getNewAssetInstances().get(0).publicKey, publicKey3);
         assertEquals(controller.getNewAssetInstances().get(1).publicKey, publicKey2);
-        assertEquals(assetInstance.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
+        assertEquals(asset.amount, controller.getNewAssetInstances().get(0).amount + controller.getNewAssetInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
     }
@@ -163,9 +163,9 @@ class ValkyrieTest {
 
         ProgramController controller = ProgramController.find(context.getEngine());
 
-        ArbitInstance arbitInstance = new ArbitInstance(publicKey2, 12L, inputBox);
-        ArrayList<TokenInstance> arbitBoxesForUse = new ArrayList<>();
-        arbitBoxesForUse.add(arbitInstance);
+        Arbit arbit = new Arbit(publicKey2, 12L, inputBox);
+        ArrayList<Token> arbitBoxesForUse = new ArrayList<>();
+        arbitBoxesForUse.add(arbit);
         controller.setTokenBoxesForUse(arbitBoxesForUse);
 
 //        ArrayList<ArbitInstance> arbitBoxesForUse = new ArrayList();
@@ -183,7 +183,7 @@ class ValkyrieTest {
         assertEquals(2, controller.getNewArbitInstances().size());
         assertEquals(controller.getNewArbitInstances().get(0).publicKey, publicKey3);
         assertEquals(controller.getNewArbitInstances().get(1).publicKey, publicKey2);
-        assertEquals(arbitInstance.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
+        assertEquals(arbit.amount, controller.getNewArbitInstances().get(0).amount + controller.getNewArbitInstances().get(1).amount);
         assertTrue(controller.didExecuteCorrectly);
         context.close();
     }

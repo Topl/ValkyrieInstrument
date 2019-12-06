@@ -1,17 +1,17 @@
-package InstrumentClasses.TokenClasses;
+package TokenBox;
 
-import InstrumentClasses.Base58;
-import InstrumentClasses.ProgramController;
+import Utils.Base58;
+import Instrument.ProgramController;
 
-public class PolyInstance extends TokenInstance{
+public class Poly extends Token {
 
-    public PolyInstance(String publicKey, Long amount) {
+    public Poly(String publicKey, Long amount) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Poly";
     }
 
-    public PolyInstance(String publicKey, Long amount, byte[] boxId) {
+    public Poly(String publicKey, Long amount, byte[] boxId) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.instanceType = "Poly";
@@ -22,7 +22,7 @@ public class PolyInstance extends TokenInstance{
         return super.getInstanceType();
     }
 
-    public static void validateWithBoxId(PolyInstance instance) {
+    public static void validateWithBoxId(Poly instance) {
         if(instance.boxId == null) {
             throw new IllegalArgumentException("Provided poly box does not have boxId");
         }

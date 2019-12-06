@@ -1,6 +1,6 @@
-package InstrumentClasses.TokenClasses;
+package TokenBox;
 
-public class TokenInstance {
+public class Token {
     public String instanceType;
     public String publicKey;
     public Long amount;

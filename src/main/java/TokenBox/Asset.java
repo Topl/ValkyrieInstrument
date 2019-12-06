@@ -1,13 +1,13 @@
-package InstrumentClasses.TokenClasses;
-import InstrumentClasses.Base58;
-import InstrumentClasses.ProgramController;
+package TokenBox;
+import Utils.Base58;
+import Instrument.ProgramController;
 
-public class AssetInstance extends TokenInstance{
+public class Asset extends Token {
     public String issuer;
     public String assetCode;
     public String data;
 
-    public AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data) {
+    public Asset(String publicKey, String issuer, String assetCode, Long amount, String data) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.assetCode = assetCode;
@@ -16,7 +16,7 @@ public class AssetInstance extends TokenInstance{
         this.instanceType = "Asset";
     }
 
-    public AssetInstance(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
+    public Asset(String publicKey, String issuer, String assetCode, Long amount, String data, byte[] boxId) {
         this.publicKey = publicKey;
         this.amount = amount;
         this.assetCode = assetCode;
@@ -31,7 +31,7 @@ public class AssetInstance extends TokenInstance{
         return super.getInstanceType();
     }
 
-    public static void validateWithBoxId(AssetInstance instance) {
+    public static void validateWithBoxId(Asset instance) {
         if(instance.boxId == null) {
             throw new IllegalArgumentException("Provided asset box does not have boxId");
         }

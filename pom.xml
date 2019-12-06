@@ -9,6 +9,7 @@
     <version>1.0.0</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <graalvm.version>19.3.0</graalvm.version>
     </properties>
 
@@ -106,8 +107,8 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>target/generated-sources/annotations/InstrumentClasses/</source>
-                                <!--<source>target/classes/InstrumentClasses/</source>-->
+                                <source>target/generated-sources/annotations/Instrument/</source>
+                                <!--<source>target/classes/Instrument/</source>-->
                             </sources>
                         </configuration>
                     </execution>
