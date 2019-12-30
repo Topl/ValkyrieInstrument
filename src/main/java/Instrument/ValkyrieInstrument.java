@@ -30,7 +30,7 @@ public final class ValkyrieInstrument extends TruffleInstrument {
      * Default option to enable the instrument's use when called from a {@link org.graalvm.polyglot.Context}, called
      * during {@link #onCreate(Env)}
      */
-    @Option(name = "", help = "Enable ValkyrieInstrument Instrument (default: false)", category = OptionCategory.USER, stability = OptionStability.EXPERIMENTAL)
+    @Option(name = "", help = "Enable ValkyrieInstrument Instrument (default: false)", category = OptionCategory.USER, stability = OptionStability.STABLE)
     static final OptionKey<Boolean> ENABLED = new OptionKey<>(false);
 
     public ProgramController controller;
