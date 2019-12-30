@@ -11,9 +11,11 @@ import com.oracle.truffle.api.instrumentation.ExecutionEventNodeFactory;
 final class ValkyrieEventFactory implements ExecutionEventNodeFactory {
 
     private ValkyrieInstrument valkyrieInstrument;
+    private ProgramController controller;
 
-    ValkyrieEventFactory(ValkyrieInstrument valkyrieInstrument) {
+    ValkyrieEventFactory(ValkyrieInstrument valkyrieInstrument, ProgramController controller) {
         this.valkyrieInstrument = valkyrieInstrument;
+        this.controller = controller;
     }
 
     /**
@@ -22,6 +24,6 @@ final class ValkyrieEventFactory implements ExecutionEventNodeFactory {
      * @return An {@link ExecutionEventNode}
      */
     public ExecutionEventNode create(final EventContext ec) {
-        return new ValkyrieNode(valkyrieInstrument, ec.getInstrumentedSourceSection());
+        return new ValkyrieNode(valkyrieInstrument, controller, ec);
     }
 }

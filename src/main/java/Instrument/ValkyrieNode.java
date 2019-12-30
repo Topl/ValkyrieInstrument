@@ -2,9 +2,9 @@ package Instrument;
 
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.frame.VirtualFrame;
+import com.oracle.truffle.api.instrumentation.EventContext;
 import com.oracle.truffle.api.instrumentation.ExecutionEventNode;
 import com.oracle.truffle.api.nodes.Node;
-import com.oracle.truffle.api.source.SourceSection;
 import com.oracle.truffle.js.runtime.JSArguments;
 
 import java.util.Iterator;
@@ -16,11 +16,13 @@ import java.util.Iterator;
 final class ValkyrieNode extends ExecutionEventNode {
 
     private final ValkyrieInstrument instrument;
-    private final SourceSection instrumentedSourceSection;
+    private final ProgramController controller;
+    private final EventContext context;
 
-    ValkyrieNode(ValkyrieInstrument instrument, SourceSection instrumentedSourceSection) {
+    ValkyrieNode(ValkyrieInstrument instrument, ProgramController controller, EventContext context) {
         this.instrument = instrument;
-        this.instrumentedSourceSection = instrumentedSourceSection;
+        this.controller = controller;
+        this.context = context;
     }
 
 
@@ -42,7 +44,7 @@ final class ValkyrieNode extends ExecutionEventNode {
             String methodName = nodeIterator.next().getSourceSection().getCharacters().toString();
 
             if (methodName.contains(".")) {
-                String separatedNames[] = methodName.split("\\.");
+                String[] separatedNames = methodName.split("\\.");
                 switch (separatedNames[0]) {
                     case "ValkyrieReserved":
                         switch (separatedNames[1]) {
