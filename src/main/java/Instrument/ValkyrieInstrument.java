@@ -259,7 +259,7 @@ public final class ValkyrieInstrument extends TruffleInstrument {
 
     @Override
     protected OptionDescriptors getOptionDescriptors() {
-        return new ValkyrieOptionDescriptors();
+        return new ValkyrieInstrumentOptionDescriptors();
     }
 
     private static Long castObjectToLong(Object obj) {
